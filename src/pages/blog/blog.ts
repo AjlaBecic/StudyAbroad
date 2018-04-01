@@ -9,7 +9,6 @@ export class Blog {
     stories: Array<{naslov: string, tekst: string}>;
 
   constructor(public navCtrl: NavController) {
-    this.story = "popular";
     
     this.stories=
     [

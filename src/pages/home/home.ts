@@ -2,7 +2,9 @@ import { Component } from '@angular/core';
 import { Nav, Platform, NavController } from 'ionic-angular';
 
 import { ListPage } from '../list/list';
-import { Proba } from '../proba/proba';
+import { Scolarship } from '../scolarship/scolarship';
+import { Job } from '../job/job';
+import { Blog } from '../blog/blog';
 
 @Component({
   selector: 'page-home',
@@ -14,7 +16,9 @@ export class HomePage {
   constructor(public navCtrl: NavController) {
     this.pages = [
       { title: 'List', component: ListPage },
-      { title: 'Proba', component: Proba }
+      { title: 'Stipendije', component: Scolarship },
+      { title: 'Posao', component: Job },
+      { title: 'Blog', component: Blog }
     ];
   }
 

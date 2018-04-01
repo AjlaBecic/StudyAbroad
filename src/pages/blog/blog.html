@@ -1,0 +1,72 @@
+<ion-header>
+    <ion-navbar>
+        <button ion-button menuToggle>
+            <ion-icon name="menu"></ion-icon>
+        </button>
+      <ion-title>Blog</ion-title>
+    </ion-navbar>
+</ion-header>
+      
+<ion-content>
+    <div padding>
+        <ion-segment [(ngModel)]="story">
+            <ion-segment-button value="popular">
+                Popularne priče
+            </ion-segment-button>
+            <ion-segment-button value="new">
+                Nove priče
+            </ion-segment-button>
+        </ion-segment>
+    </div>
+
+    <div [ngSwitch]="story">
+        <ion-list *ngSwitchCase="'popular'">                
+            <ion-item-sliding *ngFor="let item of stories">
+                <ion-item>
+                    <ion-avatar item-start>
+                        <img src="assets/icon/favicon.ico">
+                    </ion-avatar>
+                    <h2>{{item.naslov}}</h2>
+                    <p>{{item.tekst}}</p>
+                </ion-item>
+                <ion-item-options side="left">                
+                    <button ion-button color="secondary">
+                        <ion-icon name="mail"></ion-icon>
+                        Email
+                    </button>
+                </ion-item-options>
+                <ion-item-options side="right">
+                    <button ion-button color="primary">
+                        <ion-icon name="more"></ion-icon>
+                        Više
+                    </button>
+                </ion-item-options>
+            </ion-item-sliding>
+        </ion-list>
+              
+        <ion-list *ngSwitchCase="'new'">
+            <ion-item-sliding *ngFor="let item of stories">
+                <ion-item>
+                    <ion-avatar item-start>
+                        <img src="assets/icon/favicon.ico">
+                    </ion-avatar>
+                    <h2>{{item.naslov}}</h2>
+                    <p>{{item.tekst}}</p>
+                </ion-item>
+                <ion-item-options side="left">                
+                    <button ion-button color="secondary">
+                        <ion-icon name="mail"></ion-icon>
+                        Email
+                    </button>
+                </ion-item-options>
+                <ion-item-options side="right">
+                    <button ion-button color="primary">
+                        <ion-icon name="more"></ion-icon>
+                        Više
+                    </button>
+                </ion-item-options>
+            </ion-item-sliding>
+        </ion-list>
+    </div>
+</ion-content>
+      

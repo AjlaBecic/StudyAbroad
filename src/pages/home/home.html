@@ -18,7 +18,7 @@
           </ion-card>
       </ion-col>
       <ion-col col-6>
-          <ion-card type="button" (click)="nextpage('Proba')">
+          <ion-card type="button" (click)="nextpage('Stipendije')">
               <img src="assets/imgs/pocetna/stipendija.png" style="width : 100% ; height : 100%" />
               <div class="card-title">Stipendije</div>
           </ion-card>
@@ -26,14 +26,14 @@
     </ion-row>
     <ion-row>
         <ion-col col-6>
-            <ion-card>
-                <img src="assets/imgs/pocetna/apartment.png" style="width : 100% ; height : 100%" ng-click="nextpage()" />
+            <ion-card click="nextpage('Posao')">
+                <img src="assets/imgs/pocetna/apartment.png" style="width : 100% ; height : 100%" />
                 <div class="card-title">Stanovanje</div>
             </ion-card>
         </ion-col>
         <ion-col col-6>
-            <ion-card>
-                <img src="assets/imgs/pocetna/job.png" style="width : 100% ; height : 100%" ng-click="nextpage()" />
+            <ion-card type="button" (click)="nextpage('Posao')">
+                <img src="assets/imgs/pocetna/job.png" style="width : 100% ; height : 100%" />
                 <div class="card-title">Posao</div>
             </ion-card>
         </ion-col>
@@ -46,8 +46,8 @@
               </ion-card>
           </ion-col>
           <ion-col col-6>
-              <ion-card>
-                  <img src="assets/imgs/pocetna/blog.png" style="width : 100% ; height : 100%" ng-click="nextpage()" />
+              <ion-card  type="button" (click)="nextpage('Blog')">
+                  <img src="assets/imgs/pocetna/blog.png" style="width : 100% ; height : 100%"/>
                   <div class="card-title">Blog</div>
               </ion-card>
           </ion-col>

@@ -10,6 +10,7 @@ import { JobOffer } from '../jobOffer/jobOffer';
 export class Job {
 
   gradovi: Array<{ value: number, naziv: string}>;
+  jobs: Array<{naslov: string, grad: string, firma: string}>;
 
   constructor(public navCtrl: NavController, public navParams: NavParams) {
     this.gradovi = 
@@ -20,6 +21,15 @@ export class Job {
       { value: 7, naziv: 'London'}, { value: 8, naziv: 'Zagreb'},
       { value: 9, naziv: 'Madrid'}, { value: 10, naziv: 'Barcelona'}
     ];
+
+
+    this.jobs =
+    [
+      {naslov: "IT stručnjak za web", grad: "Beč", firma: "Solutions"},
+      {naslov: "Računovođa - studentski posao", grad: "Grac", firma: "UniCreditBank"},
+      {naslov: "Trgovac", grad: "Berlin", firma: "Zara"},
+      {naslov: "IT stručnjak za web", grad: "Zagreb", firma: "Solutions"}
+    ]
 
     this.gradovi.sort((item1,item2) => {
         if (item1.naziv > item2.naziv) {

@@ -43,21 +43,15 @@
         <ion-list-header class="list-header">
           Rezultati
         </ion-list-header>
-        <ion-item>
+        <ion-item-sliding *ngFor="let item of jobs">
+          <ion-item>
             <ion-avatar item-start>
               <img src="assets/icon/favicon.ico">
-            </ion-avatar>
-            <h2>Finn</h2>
-            <h3>Don't Know What To Do!</h3>
-            <p>I've had a pretty messed up day. If we just...</p>
-        </ion-item>
-        <ion-item-sliding>
-            <ion-item>
-              <ion-avatar item-start>
-                <img src="assets/icon/favicon.ico">
               </ion-avatar>
-              <h2>Slimer</h2>
-            </ion-item>
+              <h2>{{item.naslov}}</h2>
+              <h3>{{item.firma}}</h3>
+              <p>{{item.grad}}</p>
+          </ion-item>
             <ion-item-options side="left">
               <button ion-button color="primary">
                 <ion-icon name="call"></ion-icon>
@@ -75,12 +69,6 @@
               </button>
             </ion-item-options>
         </ion-item-sliding>
-        <ion-item>Terminator II</ion-item>
-        <ion-item>The Empire Strikes Back</ion-item>
-        <ion-item>Blade Runner</ion-item>
-        <ion-item>Terminator II</ion-item>
-        <ion-item>The Empire Strikes Back</ion-item>
-        <ion-item>Blade Runner</ion-item>
     </ion-list>
   </ion-content>
   

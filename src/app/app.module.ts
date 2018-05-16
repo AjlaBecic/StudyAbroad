@@ -9,6 +9,7 @@ import { Scolarship } from '../pages/scolarship/scolarship';
 import { Job } from '../pages/job/job';
 import { JobOffer } from '../pages/jobOffer/jobOffer';
 import { Blog } from '../pages/blog/blog';
+import { BlogStory } from '../pages/blogStory/blogStory';
 
 import { StatusBar } from '@ionic-native/status-bar';
 import { SplashScreen } from '@ionic-native/splash-screen';
@@ -21,7 +22,8 @@ import { SplashScreen } from '@ionic-native/splash-screen';
     Scolarship,
     Job,
     JobOffer,
-    Blog
+    Blog,
+    BlogStory
   ],
   imports: [
     BrowserModule,
@@ -35,7 +37,8 @@ import { SplashScreen } from '@ionic-native/splash-screen';
     Scolarship,
     Job,
     JobOffer,
-    Blog
+    Blog,
+    BlogStory
   ],
   providers: [
     StatusBar,

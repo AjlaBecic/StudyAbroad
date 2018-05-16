@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { Nav, Platform, NavController } from 'ionic-angular';
+import { NavController } from 'ionic-angular';
 
 import { ListPage } from '../list/list';
 import { Scolarship } from '../scolarship/scolarship';

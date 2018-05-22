@@ -23,13 +23,13 @@ export class Job {
     ];
 
 
-    this.jobs =
-    [
+    this.jobs = navParams.get('posao');
+    /*[
       {naslov: "IT stručnjak za web", grad: "Beč", firma: "Solutions"},
       {naslov: "Računovođa - studentski posao", grad: "Grac", firma: "UniCreditBank"},
       {naslov: "Trgovac", grad: "Berlin", firma: "Zara"},
       {naslov: "IT stručnjak za web", grad: "Zagreb", firma: "Solutions"}
-    ]
+    ]*/
 
     this.gradovi.sort((item1,item2) => {
         if (item1.naziv > item2.naziv) {

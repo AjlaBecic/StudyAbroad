@@ -13,6 +13,7 @@ import { Blog } from '../blog/blog';
 })
 export class HomePage {
   pages: Array<{title: string, component: any}>;
+  jobs: any = [];
 
   constructor(public navCtrl: NavController, private sqlite: SQLite) {
     this.pages = [
@@ -26,6 +27,30 @@ export class HomePage {
   nextpage(page:string) {
     //this.navCtrl.push(this.pages.find(item => item.title == page).component);
     this.navCtrl.setRoot(this.pages.find(item => item.title == page).component);
+  }
+
+  ionViewDidLoad(){
+    this.sqlite.create({
+      name: 'ionicdb.db',
+      location: 'default'
+    }).then((db: SQLiteObject) => {
+        db.executeSql('CREATE TABLE IF NOT EXISTS jobs(id INTEGER PRIMARY KEY, firma TEXT, objava TEXT, trajanje TEXT, opis TEXT, oblast TEXT, grad TEXT)', {})
+       .then(res => console.log('Executed SQL'))
+       .catch(e => console.log(e));
+    
+        db.executeSql("INSERT INTO jobs (firma, objava, trajanje, opis, oblast, grad) VALUES ('Solutions', 'danas', '20 dana', 'hhhh', 'it', 'Zagreb')", {})
+        .then(res => {     })
+        .catch(e => console.log(e));
+    
+        db.executeSql('SELECT * FROM jobs ORDER BY id DESC', {})
+        .then(res => {
+          this.jobs = [];
+          for(var i=0; i<res.rows.length; i++) {
+            this.jobs.push({id:res.rows.item(i).id,firma:res.rows.item(i).firma,naslov:res.rows.item(i).objava,grad:res.rows.item(i).grad})
+          }
+        })
+        .catch(e => console.log(e));
+      }).catch(e => console.log(e));
   }
 
 }

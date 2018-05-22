@@ -33,7 +33,7 @@ constructor(public navCtrl: NavController, private sqlite: SQLite) {
   ionViewDidLoad(){
 
     console.log("cao Ajla");
-    this.sqlite.create({
+    /*this.sqlite.create({
       name: 'ionicdb.db',
       location: 'default'
     }).then((db: SQLiteObject) => {
@@ -53,7 +53,7 @@ constructor(public navCtrl: NavController, private sqlite: SQLite) {
         }
       })
       .catch(e => console.log(e));
-    }).catch(e => console.log(e));
+    }).catch(e => console.log(e));*/
   }
 
 }

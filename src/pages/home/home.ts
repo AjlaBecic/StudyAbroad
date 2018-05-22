@@ -1,5 +1,6 @@
 import { Component } from '@angular/core';
 import { NavController } from 'ionic-angular';
+import { SQLite, SQLiteObject } from '@ionic-native/sqlite';
 
 import { ListPage } from '../list/list';
 import { Scolarship } from '../scolarship/scolarship';
@@ -13,7 +14,7 @@ import { Blog } from '../blog/blog';
 export class HomePage {
   pages: Array<{title: string, component: any}>;
 
-  constructor(public navCtrl: NavController) {
+  constructor(public navCtrl: NavController, private sqlite: SQLite) {
     this.pages = [
       { title: 'List', component: ListPage },
       { title: 'Stipendije', component: Scolarship },

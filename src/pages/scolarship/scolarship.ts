@@ -7,6 +7,8 @@ import { NavController } from 'ionic-angular';
 })
 export class Scolarship {
   gradovi: Array<{ value: number, naziv: string}>;
+  stipendije: Array<{ id: number, naslov: string, ciklus: string, trajanje: string, oblast: string, grad: string, konkurs: number}>;
+  oblast: Array<{number, string}>;
 
   constructor(public navCtrl: NavController) {
     this.gradovi = 
@@ -18,7 +20,25 @@ export class Scolarship {
       { value: 9, naziv: 'Madrid'}, { value: 10, naziv: 'Barcelona'}
     ];
 
-    this.gradovi.sort((item1,item2) => {
+    this.stipendije = 
+    [
+      { id: 1, naslov: "Konkurs za dodjelu Erasmus stipendija", ciklus: "Master", trajanje: "Dva semestra", oblast:"IT", grad: "Graz", konkurs: 0},
+      { id: 2, naslov: "Konkurs za dodjelu Erasmus stipendija", ciklus: "Master", trajanje: "Dva semestra", oblast:"IT", grad: "Graz", konkurs: 0},
+      { id: 3, naslov: "Konkurs za dodjelu Erasmus stipendija", ciklus: "Master", trajanje: "Dva semestra", oblast:"IT", grad: "Graz", konkurs: 0}      
+    ];
+
+    this.oblast = 
+    [
+      { id: 1, naziv: "IT"}, { id: 2, naziv: "Arhitektura"}, { id: 3, naziv: "Masinstvo"}, 
+      { id: 4, naziv: "Gradjevina"}, { id: 5, naziv: "Likovna"}, { id: 6, naziv: "Medicina"}
+    ];
+
+    this.gradovi = this.sortArray(this.gradovi);
+      
+  }
+
+  sortArray(niz){
+    niz.sort((item1,item2) => {
       if (item1.naziv > item2.naziv) {
         return 1;
       }
@@ -26,7 +46,9 @@ export class Scolarship {
           return -1;
       }
       return 0;});
-      
+
+      return niz;
   }
 
 }
+

@@ -10,7 +10,7 @@ import { JobOffer } from '../jobOffer/jobOffer';
 export class Job {
 
   gradovi: Array<{ value: number, naziv: string}>;
-  jobs: Array<{naslov: string, grad: string, firma: string}>;
+  jobs: Array<{id:number, naslov: string, grad: string, firma: string}>;
 
   constructor(public navCtrl: NavController, public navParams: NavParams) {
     this.gradovi = 

@@ -39,9 +39,8 @@ export class Scolarship {
       name: 'ionicdb.db',
       location: 'default'
     }).then((db: SQLiteObject) => {    
-        db.executeSql('SELECT * FROM jobs ORDER BY id DESC', {})
+        db.executeSql('SELECT * FROM scolarship ORDER BY id DESC', {})
         .then(res => {
-          this.stipendije = [];
           for(var i=0; i<res.rows.length; i++) {
             this.stipendije.push({id:res.rows.item(i).id,naslov:res.rows.item(i).naslov,ciklus:res.rows.item(i).ciklus,trajanje:res.rows.item(i).trajanje,oblast:res.rows.item(i).oblast,grad:res.rows.item(i).grad,konkurs:res.rows.item(i).konkurs})
           }
@@ -49,7 +48,6 @@ export class Scolarship {
         .catch(e => {});
       }).catch(e => {});
 
-    this.stipendije.push({id:22,naslov:'naslov',ciklus:'ciklus',trajanje:'trajanje',oblast:'oblast',grad:'0grad',konkurs:0})
   }
 
   sortArray(niz){

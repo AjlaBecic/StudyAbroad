@@ -28,7 +28,7 @@ export class HomePage {
 
   nextpage(page:string) {
     //this.navCtrl.push(this.pages.find(item => item.title == page).component);
-    this.navCtrl.setRoot(this.pages.find(item => item.title == page).component, {posao: this.jobs});
+    this.navCtrl.setRoot(this.pages.find(item => item.title == page).component);
   }
 
   ionViewDidLoad(){
@@ -44,22 +44,14 @@ export class HomePage {
        .then(res => {this.jobs.push({id:100,firma:"database success",naslov:"ss",grad:"ss"})})
        .catch(e => {this.jobs.push({id:101,firma:"database unsuccess",naslov:"ss",grad:"ss"})});
     
-        db.executeSql("INSERT INTO scolarship (naslov, ciklus, trajanje, oblast, grad, konkurs) VALUES ('Konkurs za dodjelu Erasmus stipendija baza', 'Master', 'Dva semestra', 'IT', 'Graz', 2)", {})
+        /*db.executeSql("INSERT INTO scolarship (naslov, ciklus, trajanje, oblast, grad, konkurs) VALUES ('Konkurs za dodjelu Erasmus stipendija baza', 'Master', 'Dva semestra', 'IT', 'Graz', 2)", {})
         .then(res => {this.jobs.push({id:102,firma:"insert success",naslov:"ss",grad:"ss"})})
         .catch(e => {this.jobs.push({id:103,firma:"insert unsuccess",naslov:"ss",grad:"ss"})});
 
         db.executeSql("INSERT INTO scolarship (naslov, ciklus, trajanje, oblast, grad, konkurs) VALUES ('Konkurs za dodjelu Erasmus stipendija baza', 'Master', 'Dva semestra', 'IT', 'Graz', 2)", {})
         .then(res => {this.jobs.push({id:102,firma:"insert success",naslov:"ss",grad:"ss"})})
-        .catch(e => {this.jobs.push({id:103,firma:"insert unsuccess",naslov:"ss",grad:"ss"})});
-    
-        db.executeSql('SELECT * FROM jobs ORDER BY id DESC', {})
-        .then(res => {
-          this.jobs = [];
-          for(var i=0; i<res.rows.length; i++) {
-            this.jobs.push({id:res.rows.item(i).id,firma:res.rows.item(i).firma,naslov:res.rows.item(i).objava,grad:res.rows.item(i).grad})
-          }
-        })
-        .catch(e => {this.jobs.push({id:104,firma:"select success",naslov:"ss",grad:"ss"})});
+        .catch(e => {this.jobs.push({id:103,firma:"insert unsuccess",naslov:"ss",grad:"ss"})});*/
+
       }).catch(e => {this.jobs.push({id:105,firma:e,naslov:"ss",grad:"ss"})});
   }
 

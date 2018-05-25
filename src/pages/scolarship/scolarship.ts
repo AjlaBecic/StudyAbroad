@@ -30,6 +30,9 @@ export class Scolarship {
     ];
 
     this.gradovi = this.sortArray(this.gradovi);
+
+    this.stipendije.push({id:22,naslov:'naslov',ciklus:'ciklus',trajanje:'trajanje',oblast:'oblast',grad:'0grad',konkurs:0})
+    
       
   }
 

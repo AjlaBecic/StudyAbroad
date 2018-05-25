@@ -32,11 +32,33 @@ export class Job {
       {naslov: "IT stručnjak za web", grad: "Zagreb", firma: "Solutions"}
     ]*/
 
+    this.gradovi.sort((item1,item2) => {
+        if (item1.naziv > item2.naziv) {
+          return 1;
+        }
+        if (item1.naziv < item2.naziv) {
+            return -1;
+        }
+        return 0;});
+  }
+
+  ionViewDidLoad(){
     this.sqlite.create({
       name: 'ionicdb.db',
       location: 'default'
     }).then((db: SQLiteObject) => {
       this.jobs.push({id:105,firma:"connection success",naslov:"ss",grad:"ss"})
+        db.executeSql('CREATE TABLE IF NOT EXISTS jobs(id INTEGER PRIMARY KEY, firma TEXT, objava TEXT, trajanje TEXT, opis TEXT, oblast TEXT, grad TEXT)', {})
+       .then(res => {this.jobs.push({id:100,firma:"database success",naslov:"ss",grad:"ss"})})
+       .catch(e => {this.jobs.push({id:101,firma:"database unsuccess",naslov:"ss",grad:"ss"})});
+    
+        /*db.executeSql("INSERT INTO jobs (firma, objava, trajanje, opis, oblast, grad) VALUES ('Solutions', 'danas', '20 dana', 'hhhh', 'it', 'Zagreb')", {})
+        .then(res => {this.jobs.push({id:102,firma:"insert success",naslov:"ss",grad:"ss"})})
+        .catch(e => {this.jobs.push({id:103,firma:"insert unsuccess",naslov:"ss",grad:"ss"})});
+
+        db.executeSql("INSERT INTO jobs (firma, objava, trajanje, opis, oblast, grad) VALUES ('hehehehehhee', 'uspjelooooo', '20 dana', 'hhhh', 'it', 'Zagreb')", {})
+        .then(res => {this.jobs.push({id:102,firma:"insert success",naslov:"ss",grad:"ss"})})
+        .catch(e => {this.jobs.push({id:103,firma:"insert unsuccess",naslov:"ss",grad:"ss"})});*/
     
         db.executeSql('SELECT * FROM jobs ORDER BY id DESC', {})
         .then(res => {
@@ -47,15 +69,6 @@ export class Job {
         })
         .catch(e => {this.jobs.push({id:104,firma:"select success",naslov:"ss",grad:"ss"})});
       }).catch(e => {this.jobs.push({id:105,firma:e,naslov:"ss",grad:"ss"})});
-
-    this.gradovi.sort((item1,item2) => {
-        if (item1.naziv > item2.naziv) {
-          return 1;
-        }
-        if (item1.naziv < item2.naziv) {
-            return -1;
-        }
-        return 0;});
   }
 
   offer(){

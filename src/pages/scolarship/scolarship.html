@@ -1,74 +1,79 @@
 <ion-header>
-    <ion-navbar>
-      <button ion-button menuToggle>
-        <ion-icon name="menu"></ion-icon>
-      </button>
-      <ion-title>Scolarship</ion-title>
-    </ion-navbar>
-  </ion-header>
-  
-  <ion-content>
-    <ion-grid>
-      <ion-row>
-          <ion-item>
-              <ion-label>Univerzitet</ion-label>
-              <ion-select [(ngModel)]="univerzitet">
-                <ion-option value="nes">NES</ion-option>
-                <ion-option value="n64">Nintendo64</ion-option>
-                <ion-option value="ps">PlayStation</ion-option>
-                <ion-option value="genesis">Sega Genesis</ion-option>
-                <ion-option value="saturn">Sega Saturn</ion-option>
-                <ion-option value="snes">SNES</ion-option>
-              </ion-select>
-            </ion-item>
-      </ion-row>
-      <ion-row>
-        <ion-col col-6>
-          <ion-item>
-            <ion-label>Grad</ion-label>
-            <ion-select [(ngModel)]="grad">
-                <ion-option *ngFor="let item of gradovi" value="{{item.value}}">{{item.naziv}}</ion-option>
+  <ion-navbar>
+    <button ion-button menuToggle>
+      <ion-icon name="menu"></ion-icon>
+    </button>
+    <ion-title>Scolarship</ion-title>
+  </ion-navbar>
+</ion-header>
+
+<ion-content>
+  <ion-grid>
+    <ion-row>
+      <ion-col col-6>
+        <ion-item>
+          <ion-label>Grad</ion-label>
+          <ion-select [(ngModel)]="grad">
+              <ion-option *ngFor="let item of gradovi" value="{{item.value}}">{{item.naziv}}</ion-option>
+          </ion-select>
+        </ion-item>
+      </ion-col>
+      <ion-col col-6>
+        <ion-item>
+          <ion-label>Ciklus</ion-label>
+          <ion-select [(ngModel)]="ciklus">
+            <ion-option value="Bachelor">Bachelor</ion-option>
+            <ion-option value="Master">Master</ion-option>
+            <ion-option value="Doktorat">Doktorat</ion-option>
+          </ion-select>
+        </ion-item>
+      </ion-col>
+    </ion-row>
+    <ion-row class="red">
+        <ion-item>
+            <ion-label>Oblast studija</ion-label>
+            <ion-select [(ngModel)]="oblast">
+                <ion-option *ngFor="let item of oblast" value="{{item.id}}">{{item.naziv}}</ion-option>
             </ion-select>
           </ion-item>
-        </ion-col>
-        <ion-col col-6>
-          <ion-item>
-            <ion-label>Ciklus</ion-label>
-            <ion-select [(ngModel)]="ciklus">
-              <ion-option value="Bachelor">Bachelor</ion-option>
-              <ion-option value="Master">Master</ion-option>
-              <ion-option value="Doktorat">Doktorat</ion-option>
-            </ion-select>
-          </ion-item>
-        </ion-col>
-      </ion-row>
-      <ion-row>
-          <ion-item>
-              <ion-label>Oblast studija</ion-label>
-              <ion-select [(ngModel)]="oblast">
-                <ion-option value="IT">IT</ion-option>
-                <ion-option value="Arhitektura">Arhitektura</ion-option>
-                <ion-option value="Masinstvo">Mašinstvo</ion-option>
-                <ion-option value="Gradjevina">Građevina</ion-option>
-                <ion-option value="Likovna">Likovna umjetnost</ion-option>
-                <ion-option value="Medicina">Medicina</ion-option>
-              </ion-select>
-            </ion-item>
-      </ion-row>
-      <ion-row>
-        <button ion-button class="vise" clear>Više</button>
-      </ion-row>
-    </ion-grid>
-    <ion-list>
-        <ion-list-header class="list-header">
-          Rezultati
-        </ion-list-header>
-        <ion-item>Terminator II</ion-item>
-        <ion-item>The Empire Strikes Back</ion-item>
-        <ion-item>Blade Runner</ion-item>
-        <ion-item>Terminator II</ion-item>
-        <ion-item>The Empire Strikes Back</ion-item>
-        <ion-item>Blade Runner</ion-item>
-      </ion-list>
-  </ion-content>
-  
+    </ion-row>
+  </ion-grid>
+  <ion-list>
+      <ion-list-header class="list-header">
+        Rezultati
+      </ion-list-header>
+      <ion-item-sliding *ngFor="let item of stipendije">
+        <ion-item>
+          <ion-grid>
+            <ion-row>
+              <ion-col col-2>
+                <ion-avatar item-start>
+                  <img src="assets/icon/favicon.ico">
+                </ion-avatar>
+              </ion-col>
+              <ion-col col-7>
+                <ion-grid>
+                  <ion-row><h3>{{item.naslov}}</h3></ion-row>
+                  <ion-row>
+                    <ion-col col-7><p>{{item.ciklus}}</p></ion-col>
+                    <ion-col col-5><p>{{item.trajanje}}</p></ion-col>
+                  </ion-row>
+                  <ion-row>
+                    <ion-col col-7><p>{{item.oblast}}</p></ion-col>
+                    <ion-col col-5><p>{{item.grad}}</p></ion-col>
+                  </ion-row>
+                  <ion-row><p class="obavijest">Konkurs traje još {{item.konkurs}} dana.</p></ion-row>
+                </ion-grid>
+              </ion-col>
+            </ion-row>
+          </ion-grid>
+        </ion-item>
+          <ion-item-options side="right">
+            <button ion-button color="primary">
+              <ion-icon name="more"></ion-icon>
+              Prijava
+            </button>
+          </ion-item-options>
+      </ion-item-sliding>
+    </ion-list>
+</ion-content>

@@ -32,6 +32,8 @@ export class Job {
       {naslov: "IT stručnjak za web", grad: "Zagreb", firma: "Solutions"}
     ]*/
 
+    this.jobs = [{id: 1, naslov: "IT stručnjak za web", grad: "Beč", firma: "Solutions"}];
+
     this.gradovi.sort((item1,item2) => {
         if (item1.naziv > item2.naziv) {
           return 1;

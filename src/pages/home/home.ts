@@ -36,18 +36,21 @@ export class HomePage {
       name: 'ionicdb.db',
       location: 'default'
     }).then((db: SQLiteObject) => {
-      this.jobs.push({id:105,firma:"connection success",naslov:"ss",grad:"ss"})
         db.executeSql('CREATE TABLE IF NOT EXISTS jobs(id INTEGER PRIMARY KEY, firma TEXT, objava TEXT, trajanje TEXT, opis TEXT, oblast TEXT, grad TEXT)', {})
        .then(res => {this.jobs.push({id:100,firma:"database success",naslov:"ss",grad:"ss"})})
        .catch(e => {this.jobs.push({id:101,firma:"database unsuccess",naslov:"ss",grad:"ss"})});
+
+       db.executeSql('CREATE TABLE IF NOT EXISTS scolarship(id INTEGER PRIMARY KEY, naslov TEXT, ciklus TEXT, trajanje TEXT, oblast TEXT, grad TEXT, konkurs NUMBER)', {})
+       .then(res => {this.jobs.push({id:100,firma:"database success",naslov:"ss",grad:"ss"})})
+       .catch(e => {this.jobs.push({id:101,firma:"database unsuccess",naslov:"ss",grad:"ss"})});
     
-        /*db.executeSql("INSERT INTO jobs (firma, objava, trajanje, opis, oblast, grad) VALUES ('Solutions', 'danas', '20 dana', 'hhhh', 'it', 'Zagreb')", {})
+        db.executeSql("INSERT INTO scolarship (naslov, ciklus, trajanje, oblast, grad, konkurs) VALUES ('Konkurs za dodjelu Erasmus stipendija baza', 'Master', 'Dva semestra', 'IT', 'Graz', 2)", {})
         .then(res => {this.jobs.push({id:102,firma:"insert success",naslov:"ss",grad:"ss"})})
         .catch(e => {this.jobs.push({id:103,firma:"insert unsuccess",naslov:"ss",grad:"ss"})});
 
-        db.executeSql("INSERT INTO jobs (firma, objava, trajanje, opis, oblast, grad) VALUES ('hehehehehhee', 'uspjelooooo', '20 dana', 'hhhh', 'it', 'Zagreb')", {})
+        db.executeSql("INSERT INTO scolarship (naslov, ciklus, trajanje, oblast, grad, konkurs) VALUES ('Konkurs za dodjelu Erasmus stipendija baza', 'Master', 'Dva semestra', 'IT', 'Graz', 2)", {})
         .then(res => {this.jobs.push({id:102,firma:"insert success",naslov:"ss",grad:"ss"})})
-        .catch(e => {this.jobs.push({id:103,firma:"insert unsuccess",naslov:"ss",grad:"ss"})});*/
+        .catch(e => {this.jobs.push({id:103,firma:"insert unsuccess",naslov:"ss",grad:"ss"})});
     
         db.executeSql('SELECT * FROM jobs ORDER BY id DESC', {})
         .then(res => {

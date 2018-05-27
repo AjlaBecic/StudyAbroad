@@ -1,0 +1,77 @@
+<ion-header>
+        <ion-navbar>
+          <button ion-button menuToggle>
+            <ion-icon name="menu"></ion-icon>
+          </button>
+          <ion-title>Ponuda za posao</ion-title>
+        </ion-navbar>
+      </ion-header>
+      
+      <ion-content>
+        <ion-grid>
+            <ion-row>
+                <ion-col col-6>
+                    <img src="assets/imgs/pocetna/job.png" style="width : 100% ; height : 100%" />
+                </ion-col>
+                <ion-col col-6>
+                    <ion-row>
+                        <ion-item>
+                            <ion-label>Grad</ion-label>
+                            <ion-select [(ngModel)]="grad">
+                                <ion-option *ngFor="let item of gradovi" value="{{item.naziv}}">{{item.naziv}}</ion-option>
+                            </ion-select>
+                        </ion-item>
+                    </ion-row>
+                    <ion-row> 
+                        <ion-item>
+                            <ion-label>Oblast</ion-label>
+                            <ion-select [(ngModel)]="oblast">
+                                <ion-option value="IT">IT</ion-option>
+                                <ion-option value="Arhitektura">Arhitektura</ion-option>
+                                <ion-option value="Masinstvo">Mašinstvo</ion-option>
+                                <ion-option value="Gradjevina">Građevina</ion-option>
+                                <ion-option value="Likovna">Likovna umjetnost</ion-option>
+                                <ion-option value="Medicina">Medicina</ion-option>
+                            </ion-select>
+                        </ion-item>
+                    </ion-row>
+                    <ion-row>
+                        <ion-item>
+                            <ion-label class="red" floating>Ciklus</ion-label>
+                            <ion-input type="text" [(ngModel)]="ciklus"></ion-input>
+                        </ion-item> 
+                    </ion-row>
+                </ion-col>
+            </ion-row>
+            <ion-row>
+                <ion-col>
+                    <ion-row>
+                        <ion-item>
+                            <ion-label floating>Naslov</ion-label>
+                            <ion-textarea type="text" rows="2" [(ngModel)]="naslov"></ion-textarea>
+                        </ion-item>                    
+                    </ion-row>
+                </ion-col>
+            </ion-row>
+            <ion-row>
+                <ion-col>
+                    <ion-row>
+                        <ion-item>
+                            <ion-label floating>Link za prijavu</ion-label>
+                            <ion-input type="url" [(ngModel)]="link"></ion-input>
+                        </ion-item>
+                    </ion-row>
+                </ion-col>
+            </ion-row>
+            <ion-row>
+                <ion-item>
+                    <ion-label floating>Trajanje konkursa</ion-label>
+                    <ion-datetime displayFormat="MMM DD YYYY" [(ngModel)]="trajanje"></ion-datetime>
+                </ion-item>
+            </ion-row>
+            <ion-row>
+                <button ion-button class="objavi" round (click)="addOffer()">Objavi</button>
+            </ion-row>
+        </ion-grid>
+      </ion-content>
+      

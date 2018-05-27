@@ -8,6 +8,7 @@ import { MyApp } from './app.component';
 import { HomePage } from '../pages/home/home';
 import { ListPage } from '../pages/list/list';
 import { Scolarship } from '../pages/scolarship/scolarship';
+import { AddScolarship } from '../pages/addScolarship/addScolarship';
 import { Job } from '../pages/job/job';
 import { JobOffer } from '../pages/jobOffer/jobOffer';
 import { Blog } from '../pages/blog/blog';
@@ -22,6 +23,7 @@ import { SplashScreen } from '@ionic-native/splash-screen';
     HomePage,
     ListPage,
     Scolarship,
+    AddScolarship,
     Job,
     JobOffer,
     Blog,
@@ -37,6 +39,7 @@ import { SplashScreen } from '@ionic-native/splash-screen';
     HomePage,
     ListPage,
     Scolarship,
+    AddScolarship,
     Job,
     JobOffer,
     Blog,

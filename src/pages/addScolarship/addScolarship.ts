@@ -3,20 +3,18 @@ import { NavController } from 'ionic-angular';
 import { SQLite, SQLiteObject } from '@ionic-native/sqlite';
 
 
-import { Job } from '../job/job';
+import { Scolarship } from '../scolarship/scolarship';
 
 @Component({
   selector: 'page-jobOffer',
   templateUrl: 'jobOffer.html'
 })
-export class JobOffer {
+export class AddScolarship {
   gradovi: Array<{ value: number, naziv: string}>;
-  firma: string;
+  ciklus: string;
   trajanje: Date;
   oblast: string;
   grad: string;
-  telefon: string;
-  email: string;
   naslov: string;
   link: string;
 
@@ -47,10 +45,10 @@ export class JobOffer {
       location: 'default'
     }).then((db: SQLiteObject) => {
 
-        db.executeSql("INSERT INTO jobs(firma, trajanje, oblast, grad, telefon, email, naslov, link) VALUES('" + this.firma + "','" + this.trajanje.toLocaleString() 
-          + "','" + this.oblast + "','" + this.grad + "','" + this.telefon + "','" + this.email + "','" + this.naslov + "','" + this.link + "')" , {})
+        db.executeSql("INSERT INTO scolarship(naslov, ciklus, trajanje, oblast, grad, link) VALUES('" + this.naslov + "','" + this.ciklus + "','" + this.trajanje.toLocaleString() 
+          + "','" + this.oblast + "','" + this.grad + "','"  + this.link + "')" , {})
         .then(res => {                    
-          this.navCtrl.setRoot(Job);
+          this.navCtrl.setRoot(Scolarship);
         })
         .catch(e => {  this.naslov = this.trajanje.toLocaleString() + this.link + e;      })
             

@@ -1,5 +1,6 @@
 import { Component } from '@angular/core';
 import { NavController } from 'ionic-angular';
+import { SQLite, SQLiteObject } from '@ionic-native/sqlite';
 
 @Component({
   selector: 'page-jobOffer',
@@ -7,8 +8,16 @@ import { NavController } from 'ionic-angular';
 })
 export class JobOffer {
   gradovi: Array<{ value: number, naziv: string}>;
+  firma: any;
+  trajanje: any;
+  oblast: any;
+  grad: any;
+  telefon: any;
+  email: any;
+  naslov: any;
+  link: any;
 
-  constructor(public navCtrl: NavController) {
+  constructor(public navCtrl: NavController, private sqlite: SQLite) {
     this.gradovi = 
     [
       { value: 1, naziv: 'Amsterdam'}, { value: 2, naziv: 'Beč'},
@@ -27,6 +36,21 @@ export class JobOffer {
       }
       return 0;});
       
+  }
+
+  addOffer(){
+    this.sqlite.create({
+      name: 'ionicdb.db',
+      location: 'default'
+    }).then((db: SQLiteObject) => {
+      db.executeSql('DROP TABLE jobs',{}).then(res=>{}).catch(e=>{});
+
+        db.executeSql('INSERT INTO jobs(firma, trajanje, oblast, grad, telefon, email, naslov, link) VALUES(' + this.firma + ',' + this.trajanje 
+          + ',' + this.oblast + ',' + this.grad + ',' + this.telefon + ',' + this.email + ',' + this.naslov + ',' + this.link + ')' , {})
+        .then(res => {})
+        .catch(e => {});
+
+      }).catch(e => {});
   }
 
 }

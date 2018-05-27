@@ -1,2 +1,5 @@
 u bazu za jobs dodati: oblast, link za vise, tel broj, email, datum do kad traje konkurs
 u bazu za tsipendije dodati link za prijavu, izbaciti konkurs, a trajanje je datum do kad traje 
+
+
+slike ?

@@ -11,7 +11,7 @@ import { JobOffer } from '../jobOffer/jobOffer';
 export class Job {
 
   gradovi: Array<{ value: number, naziv: string}>;
-  jobs: Array<{id:number, naslov: string, grad: string, firma: string}>;
+  jobs: Array<{id:number, naslov: string, grad: string, firma: string, trajanje: Date, oblast: string, telefon: string, email: string, link: string}>;
 
   constructor(public navCtrl: NavController, public navParams: NavParams, private sqlite: SQLite) {
     this.gradovi = 
@@ -49,10 +49,10 @@ export class Job {
       name: 'ionicdb.db',
       location: 'default'
     }).then((db: SQLiteObject) => {
-      this.jobs.push({id:105,firma:"connection success",naslov:"ss",grad:"ss"})
-        db.executeSql('CREATE TABLE IF NOT EXISTS jobs(id INTEGER PRIMARY KEY, firma TEXT, objava TEXT, trajanje TEXT, opis TEXT, oblast TEXT, grad TEXT)', {})
+      //this.jobs.push({id:105,firma:"connection success",naslov:"ss",grad:"ss"})
+        /*db.executeSql('CREATE TABLE IF NOT EXISTS jobs(id INTEGER PRIMARY KEY, firma TEXT, objava TEXT, trajanje TEXT, opis TEXT, oblast TEXT, grad TEXT)', {})
        .then(res => {this.jobs.push({id:100,firma:"database success",naslov:"ss",grad:"ss"})})
-       .catch(e => {this.jobs.push({id:101,firma:"database unsuccess",naslov:"ss",grad:"ss"})});
+       .catch(e => {this.jobs.push({id:101,firma:"database unsuccess",naslov:"ss",grad:"ss"})});*/
     
         /*db.executeSql("INSERT INTO jobs (firma, objava, trajanje, opis, oblast, grad) VALUES ('Solutions', 'danas', '20 dana', 'hhhh', 'it', 'Zagreb')", {})
         .then(res => {this.jobs.push({id:102,firma:"insert success",naslov:"ss",grad:"ss"})})
@@ -66,11 +66,11 @@ export class Job {
         .then(res => {
           this.jobs = [];
           for(var i=0; i<res.rows.length; i++) {
-            this.jobs.push({id:res.rows.item(i).id,firma:res.rows.item(i).firma,naslov:res.rows.item(i).objava,grad:res.rows.item(i).grad})
+            this.jobs.push({id:res.rows.item(i).id,firma:res.rows.item(i).firma,naslov:res.rows.item(i).naslov,grad:res.rows.item(i).grad,oblast:res.rows.item(i).oblast,telefon:res.rows.item(i).telefon,email:res.rows.item(i).email,link:res.rows.item(i).link,trajanje:new Date(res.rows.item(i).trajanje)})
           }
         })
-        .catch(e => {this.jobs.push({id:104,firma:"select success",naslov:"ss",grad:"ss"})});
-      }).catch(e => {this.jobs.push({id:105,firma:e,naslov:"ss",grad:"ss"})});
+        .catch(e => {});
+      }).catch(e => {});
   }
 
   offer(){

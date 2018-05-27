@@ -2,6 +2,9 @@ import { Component } from '@angular/core';
 import { NavController } from 'ionic-angular';
 import { SQLite, SQLiteObject } from '@ionic-native/sqlite';
 
+
+import { Job } from '../job/job';
+
 @Component({
   selector: 'page-jobOffer',
   templateUrl: 'jobOffer.html'
@@ -43,12 +46,13 @@ export class JobOffer {
       name: 'ionicdb.db',
       location: 'default'
     }).then((db: SQLiteObject) => {
-      db.executeSql('DROP TABLE jobs',{}).then(res=>{}).catch(e=>{});
 
         db.executeSql('INSERT INTO jobs(firma, trajanje, oblast, grad, telefon, email, naslov, link) VALUES(' + this.firma + ',' + this.trajanje.toLocaleString() 
           + ',' + this.oblast + ',' + this.grad + ',' + this.telefon + ',' + this.email + ',' + this.naslov + ',' + this.link + ')' , {})
-        .then(res => {})
-        .catch(e => {});
+        .then(res => {
+                    
+          this.navCtrl.setRoot(Job);})
+        .catch(e => {          db.executeSql("INSERT INTO jobs(firma, trajanje, oblast, grad, telefon, email, naslov, link) VALUES('this.firma' , 'this.trajanje.toLocaleString()', 'this.oblast,this.grad' , 'this.telefon' ,'this.email' ,"+ e + " , 'this.link' )" , {})      });
 
       }).catch(e => {});
   }

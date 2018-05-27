@@ -39,8 +39,7 @@ export class JobOffer {
   }
 
   addOffer(){
-    this.naslov = this.trajanje.toLocaleString();
-    /*this.sqlite.create({
+    this.sqlite.create({
       name: 'ionicdb.db',
       location: 'default'
     }).then((db: SQLiteObject) => {
@@ -51,7 +50,7 @@ export class JobOffer {
         .then(res => {})
         .catch(e => {});
 
-      }).catch(e => {});*/
+      }).catch(e => {});
   }
 
 }

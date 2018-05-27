@@ -9,7 +9,7 @@ import { AddScolarship } from '../addScolarship/addScolarship';
 })
 export class Scolarship {
   gradovi: Array<{ value: number, naziv: string}>;
-  stipendije: Array<{ id: number, naslov: string, ciklus: string, trajanje: string, oblast: string, grad: string, konkurs: number}>;
+  stipendije: Array<{ id: number, naslov: string, ciklus: string, trajanje: string, oblast: string, grad: string, link: number}>;
   oblast: Array<{id: number, naziv: string}>;
 
   constructor(public navCtrl: NavController, private sqlite: SQLite) {
@@ -43,7 +43,7 @@ export class Scolarship {
         db.executeSql('SELECT * FROM scolarship ORDER BY id DESC', {})
         .then(res => {
           for(var i=0; i<res.rows.length; i++) {
-            this.stipendije.push({id:res.rows.item(i).id,naslov:res.rows.item(i).naslov,ciklus:res.rows.item(i).ciklus,trajanje:res.rows.item(i).trajanje,oblast:res.rows.item(i).oblast,grad:res.rows.item(i).grad,konkurs:res.rows.item(i).konkurs})
+            this.stipendije.push({id:res.rows.item(i).id,naslov:res.rows.item(i).naslov,ciklus:res.rows.item(i).ciklus,trajanje:res.rows.item(i).trajanje,oblast:res.rows.item(i).oblast,grad:res.rows.item(i).grad,link:res.rows.item(i).link})
           }
         })
         .catch(e => {});

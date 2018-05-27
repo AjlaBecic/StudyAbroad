@@ -6,8 +6,8 @@ import { SQLite, SQLiteObject } from '@ionic-native/sqlite';
 import { Scolarship } from '../scolarship/scolarship';
 
 @Component({
-  selector: 'page-jobOffer',
-  templateUrl: 'jobOffer.html'
+  selector: 'page-addScolarship',
+  templateUrl: 'addScolarship.html'
 })
 export class AddScolarship {
   gradovi: Array<{ value: number, naziv: string}>;

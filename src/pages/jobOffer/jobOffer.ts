@@ -39,18 +39,19 @@ export class JobOffer {
   }
 
   addOffer(){
-    this.sqlite.create({
+    this.naslov = this.trajanje.toLocaleString();
+    /*this.sqlite.create({
       name: 'ionicdb.db',
       location: 'default'
     }).then((db: SQLiteObject) => {
       db.executeSql('DROP TABLE jobs',{}).then(res=>{}).catch(e=>{});
 
-        db.executeSql('INSERT INTO jobs(firma, trajanje, oblast, grad, telefon, email, naslov, link) VALUES(' + this.firma + ',' + this.trajanje 
+        db.executeSql('INSERT INTO jobs(firma, trajanje, oblast, grad, telefon, email, naslov, link) VALUES(' + this.firma + ',' + this.trajanje.toLocaleString() 
           + ',' + this.oblast + ',' + this.grad + ',' + this.telefon + ',' + this.email + ',' + this.naslov + ',' + this.link + ')' , {})
         .then(res => {})
         .catch(e => {});
 
-      }).catch(e => {});
+      }).catch(e => {});*/
   }
 
 }

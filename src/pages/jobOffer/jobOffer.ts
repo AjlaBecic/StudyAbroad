@@ -49,17 +49,14 @@ export class JobOffer {
 
         //db.executeSql('INSERT INTO jobs(firma, trajanje, oblast, grad, telefon, email, naslov, link) VALUES(' + this.firma + ',' + this.trajanje.toLocaleString() 
           //+ ',' + this.oblast + ',' + this.grad + ',' + this.telefon + ',' + this.email + ',' + this.naslov + ',' + this.link + ')' , {})
-          db.executeSql("INSERT INTO jobs(firma, trajanje, oblast, grad, telefon, email, naslov, link) VALUES('this.firma' , 'this.trajanje.toLocaleString()', 'this.oblast,this.grad' , 'this.telefon' ,'this.email' ,'hhh'   , 'this.link' )" , {})
+          db.executeSql("INSERT INTO jobs(firma, trajanje, oblast, grad, telefon, email, naslov, link) VALUES('hh' , 'hh', 'this' , 'this' , 'hh' ,'thh' ,'hhh' , 'thh' )" , {})
         .then(res => {
                     
           //this.navCtrl.setRoot(Job);
         })
         .catch(e => {  this.naslov = this.trajanje.toLocaleString() + this.link + e;      })
-          .then(res => {
             
   //this.navCtrl.setRoot(Job);
-})
-.catch(e => {  this.firma = this.oblast + e; })
       }).catch(e => {this.naslov = e;});
   }
 

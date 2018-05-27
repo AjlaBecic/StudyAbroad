@@ -43,13 +43,6 @@ export class HomePage {
        db.executeSql('CREATE TABLE IF NOT EXISTS scolarship(id INTEGER PRIMARY KEY, naslov TEXT, ciklus TEXT, trajanje TEXT, oblast TEXT, grad TEXT, konkurs NUMBER)', {})
        .then(res => {this.jobs.push({id:100,firma:"database success",naslov:"ss",grad:"ss"})})
        .catch(e => {this.jobs.push({id:101,firma:"database unsuccess",naslov:"ss",grad:"ss"})});
-
-       db.executeSql("INSERT INTO jobs(firma, trajanje, oblast, grad, telefon, email, naslov, link) VALUES('aa' , 'aa', 'aa' , 'aa' , 'aa' ,'aa' ,'aa' , 'aa' )" , {})
-       .then(res => {
-                   
-         //this.navCtrl.setRoot(Job);
-       })
-       .catch(e => {       })
     
         /*db.executeSql("INSERT INTO scolarship (naslov, ciklus, trajanje, oblast, grad, konkurs) VALUES ('Konkurs za dodjelu Erasmus stipendija baza', 'Master', 'Dva semestra', 'IT', 'Graz', 2)", {})
         .then(res => {this.jobs.push({id:102,firma:"insert success",naslov:"ss",grad:"ss"})})

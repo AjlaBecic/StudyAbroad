@@ -11,14 +11,14 @@ import { Job } from '../job/job';
 })
 export class JobOffer {
   gradovi: Array<{ value: number, naziv: string}>;
-  firma: any;
-  trajanje: any;
-  oblast: any;
-  grad: any;
-  telefon: any;
-  email: any;
-  naslov: any;
-  link: any;
+  firma: string;
+  trajanje: Date;
+  oblast: string;
+  grad: string;
+  telefon: string;
+  email: string;
+  naslov: string;
+  link: string;
 
   constructor(public navCtrl: NavController, private sqlite: SQLite) {
     this.gradovi = 

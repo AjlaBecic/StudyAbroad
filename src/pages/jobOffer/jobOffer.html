@@ -37,18 +37,18 @@
                 </ion-row>
                 <ion-row>
                     <ion-item>
-                        <ion-label class="red" floating>Telefon</ion-label>
-                        <ion-input type="tel" [(ngModel)]="telefon"></ion-input>
-                    </ion-item>
+                        <ion-label class="red" floating>Firma</ion-label>
+                        <ion-input type="text" [(ngModel)]="firma"></ion-input>
+                    </ion-item> 
                 </ion-row>
             </ion-col>
         </ion-row>
         <ion-row>
             <ion-col col-6>
                 <ion-item>
-                    <ion-label class="red" floating>Firma</ion-label>
-                    <ion-input type="text" [(ngModel)]="firma"></ion-input>
-                </ion-item>  
+                    <ion-label class="red" floating>Telefon</ion-label>
+                    <ion-input type="tel" [(ngModel)]="telefon"></ion-input>
+                </ion-item>
             </ion-col>
             <ion-col col-6>
                 <ion-item>
@@ -58,45 +58,29 @@
             </ion-col>
         </ion-row>
         <ion-row>
-            <!--<ion-col col-6>
-                <ion-row>
-                    <ion-item>
-                        <ion-label floating>Datum objave</ion-label>
-                        <ion-datetime displayFormat="MMM DD YYYY" [(ngModel)]="objava"></ion-datetime>
-                    </ion-item>
-                </ion-row>
-            </ion-col>-->
             <ion-col>
                 <ion-row>
                     <ion-item>
-                        <ion-label floating>Trajanje konkursa</ion-label>
-                        <ion-datetime displayFormat="MMM DD YYYY" [(ngModel)]="trajanje"></ion-datetime>
+                        <ion-label floating>Naslov</ion-label>
+                        <ion-textarea type="text" rows="2" [(ngModel)]="naslov"></ion-textarea>
+                    </ion-item>                    
+                </ion-row>
+            </ion-col>
+        </ion-row>
+        <ion-row>
+            <ion-col>
+                <ion-row>
+                    <ion-item>
+                        <ion-label floating>Link za više informacija</ion-label>
+                        <ion-input type="url" [(ngModel)]="link"></ion-input>
                     </ion-item>
                 </ion-row>
             </ion-col>
         </ion-row>
         <ion-row>
-                <!--<ion-col col-6>
-                    <ion-row>
-                        <ion-item>
-                            <ion-label floating>Datum objave</ion-label>
-                            <ion-datetime displayFormat="MMM DD YYYY" [(ngModel)]="objava"></ion-datetime>
-                        </ion-item>
-                    </ion-row>
-                </ion-col>-->
-                <ion-col>
-                    <ion-row>
-                        <ion-item>
-                            <ion-label floating>Link za više informacija</ion-label>
-                            <ion-input type="url" [(ngModel)]="link"></ion-input>
-                        </ion-item>
-                    </ion-row>
-                </ion-col>
-            </ion-row>
-        <ion-row>
             <ion-item>
-                <ion-label floating>Naslov</ion-label>
-                <ion-textarea type="text" rows="2" [(ngModel)]="naslov"></ion-textarea>
+                <ion-label floating>Trajanje konkursa</ion-label>
+                <ion-datetime displayFormat="MMM DD YYYY" [(ngModel)]="trajanje"></ion-datetime>
             </ion-item>
         </ion-row>
         <ion-row>

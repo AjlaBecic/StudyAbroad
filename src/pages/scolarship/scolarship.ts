@@ -1,6 +1,7 @@
 import { Component } from '@angular/core';
 import { NavController } from 'ionic-angular';
 import { SQLite, SQLiteObject } from '@ionic-native/sqlite';
+import { AddScolarship } from '../addScolarship/addScolarship';
 
 @Component({
   selector: 'page-scolarship',
@@ -47,6 +48,11 @@ export class Scolarship {
         })
         .catch(e => {});
       }).catch(e => {});
+
+  }
+
+  offer(){
+    this.navCtrl.push(AddScolarship);
 
   }
 

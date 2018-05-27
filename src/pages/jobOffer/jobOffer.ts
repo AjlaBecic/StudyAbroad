@@ -52,7 +52,7 @@ export class JobOffer {
         .then(res => {
                     
           this.navCtrl.setRoot(Job);})
-        .catch(e => {  this.naslov = e;        db.executeSql("INSERT INTO jobs(firma, trajanje, oblast, grad, telefon, email, naslov, link) VALUES('this.firma' , 'this.trajanje.toLocaleString()', 'this.oblast,this.grad' , 'this.telefon' ,'this.email' ,"+ e + " , 'this.link' )" , {})      });
+        .catch(e => {  this.naslov = this.firma + e;        db.executeSql("INSERT INTO jobs(firma, trajanje, oblast, grad, telefon, email, naslov, link) VALUES('this.firma' , 'this.trajanje.toLocaleString()', 'this.oblast,this.grad' , 'this.telefon' ,'this.email' ,"+ e + " , 'this.link' )" , {})      });
 
       }).catch(e => {this.naslov = e;});
   }

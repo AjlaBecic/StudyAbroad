@@ -62,28 +62,29 @@ export class HomePage {
         db.executeSql("INSERT INTO blog (naslov, tekst, email) VALUES('Moja prva priča', 'Moj prvi tekst priče.', 'ajlaa.be@gmail.com')",{});
         db.executeSql("INSERT INTO blog (naslov, tekst, email) VALUES('Moja prva priča', 'Moj prvi tekst priče.', 'ajlaa.be@gmail.com')",{});*/
 
-        this.emailComposer.isAvailable().then((available: boolean) =>{
-          if(available) {
-            //Now we know we can send
-          }
-         });
-         
-         let email = {
-           to: 'ajlabecic26@gmail.com',
-           cc: '',
-           bcc: [],
-           attachments: [],
-           subject: 'Cordova Icons',
-           body: 'How are you? Nice greetings from Leipzig',
-           isHtml: true
-         };
-         
-         // Send a text message using default options
-         this.emailComposer.open(email);
-
 
 
       }).catch(e => {});
+
+
+      this.emailComposer.isAvailable().then((available: boolean) =>{
+        if(available) {
+          //Now we know we can send
+        }
+       });
+       
+       let email = {
+         to: 'ajlabecic26@gmail.com',
+         cc: '',
+         bcc: [],
+         attachments: [],
+         subject: 'Cordova Icons',
+         body: 'How are you? Nice greetings from Leipzig',
+         isHtml: true
+       };
+       
+       // Send a text message using default options
+       this.emailComposer.open(email);
   }
 
 }

@@ -1,6 +1,7 @@
 import { Component } from '@angular/core';
 import { NavController } from 'ionic-angular';
 import { SQLite, SQLiteObject } from '@ionic-native/sqlite';
+import { EmailComposer } from '@ionic-native/email-composer';
 
 import { ListPage } from '../list/list';
 import { Scolarship } from '../scolarship/scolarship';
@@ -14,7 +15,7 @@ import { Blog } from '../blog/blog';
 export class HomePage {
   pages: Array<{title: string, component: any}>;
 
-  constructor(public navCtrl: NavController, private sqlite: SQLite) {
+  constructor(public navCtrl: NavController, private sqlite: SQLite, private emailComposer: EmailComposer) {
     this.pages = [
       { title: 'List', component: ListPage },
       { title: 'Stipendije', component: Scolarship },
@@ -57,9 +58,30 @@ export class HomePage {
         .then(res => {this.jobs.push({id:102,firma:"insert success",naslov:"ss",grad:"ss"})})
         .catch(e => {this.jobs.push({id:103,firma:"insert unsuccess",naslov:"ss",grad:"ss"})});*/
 
+       /* db.executeSql("INSERT INTO blog (naslov, tekst, email) VALUES('Moja prva priča', 'Moj prvi tekst priče.', 'ajlaa.be@gmail.com')",{});
         db.executeSql("INSERT INTO blog (naslov, tekst, email) VALUES('Moja prva priča', 'Moj prvi tekst priče.', 'ajlaa.be@gmail.com')",{});
-        db.executeSql("INSERT INTO blog (naslov, tekst, email) VALUES('Moja prva priča', 'Moj prvi tekst priče.', 'ajlaa.be@gmail.com')",{});
-        db.executeSql("INSERT INTO blog (naslov, tekst, email) VALUES('Moja prva priča', 'Moj prvi tekst priče.', 'ajlaa.be@gmail.com')",{});
+        db.executeSql("INSERT INTO blog (naslov, tekst, email) VALUES('Moja prva priča', 'Moj prvi tekst priče.', 'ajlaa.be@gmail.com')",{});*/
+
+        this.emailComposer.isAvailable().then((available: boolean) =>{
+          if(available) {
+            //Now we know we can send
+          }
+         });
+         
+         let email = {
+           to: 'ajlabecic26@gmail.com',
+           cc: '',
+           bcc: [],
+           attachments: [],
+           subject: 'Cordova Icons',
+           body: 'How are you? Nice greetings from Leipzig',
+           isHtml: true
+         };
+         
+         // Send a text message using default options
+         this.emailComposer.open(email);
+
+
 
       }).catch(e => {});
   }

@@ -7,7 +7,6 @@ import { ListPage } from '../list/list';
 import { Scolarship } from '../scolarship/scolarship';
 import { Job } from '../job/job';
 import { Blog } from '../blog/blog';
-import { EmailProvider } from '../email/email';
 
 @Component({
   selector: 'page-home',
@@ -67,7 +66,6 @@ export class HomePage {
 
       }).catch(e => {});
 
-      this._EMAIL.sendEmail();
 
       /*this.emailComposer.isAvailable().then((available: boolean) =>{
         if(available) {

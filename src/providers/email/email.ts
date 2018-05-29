@@ -14,10 +14,10 @@ export class EmailProvider {
    /**
     *
     * @public
-    * @method sendMail
+    * @method sendMail       {string}    The message content
     *
     */
-   sendEmail() : void
+   sendEmail() : string
    {
       // Use the plugin isAvailable method to check whether
       // the user has configured an email account
@@ -40,23 +40,31 @@ export class EmailProvider {
                to 			: 'ajlabecic26@gmail.com',
                cc 			: '',
                bcc 			: '',
-               attachments 	: [ ],
-               subject 		: 'hej cao',
-               body 		: 'tekstteks'
+               attachments 	: [
+                 
+               ],
+               subject 		: 'subject',
+               body 		: 'body'
             };
 
             // Open the device e-mail client and create
             // a new e-mail message populated with the
             // object containing our message data
             this._EMAIL.open(email);
+
+            return 'ok';
          })
          .catch((error : any) =>
          {
+            return 'No access permission granted';
          });
       })
       .catch((error : any) =>
       {
+         return 'User does not appear to have device e-mail account';
       });
+
+      return 'izvan svega';
    }
 
 }

@@ -7,6 +7,7 @@ import { ListPage } from '../list/list';
 import { Scolarship } from '../scolarship/scolarship';
 import { Job } from '../job/job';
 import { Blog } from '../blog/blog';
+import { EmailProvider } from '../email/email';
 
 @Component({
   selector: 'page-home',
@@ -15,7 +16,7 @@ import { Blog } from '../blog/blog';
 export class HomePage {
   pages: Array<{title: string, component: any}>;
 
-  constructor(public navCtrl: NavController, private sqlite: SQLite, private emailComposer: EmailComposer) {
+  constructor(public navCtrl: NavController, private sqlite: SQLite, private emailComposer: EmailComposer, private _EMAIL: EmailProvider) {
     this.pages = [
       { title: 'List', component: ListPage },
       { title: 'Stipendije', component: Scolarship },
@@ -66,8 +67,9 @@ export class HomePage {
 
       }).catch(e => {});
 
+      this._EMAIL.sendEmail();
 
-      this.emailComposer.isAvailable().then((available: boolean) =>{
+      /*this.emailComposer.isAvailable().then((available: boolean) =>{
         if(available) {
           //Now we know we can send
         }
@@ -84,7 +86,7 @@ export class HomePage {
        };
        
        // Send a text message using default options
-       this.emailComposer.open(email);
+       this.emailComposer.open(email);*/
   }
 
 }

@@ -13,6 +13,7 @@ import { Job } from '../pages/job/job';
 import { JobOffer } from '../pages/jobOffer/jobOffer';
 import { Blog } from '../pages/blog/blog';
 import { BlogStory } from '../pages/blogStory/blogStory';
+import { AddStory } from '../pages/addStory/addStory';
 
 import { StatusBar } from '@ionic-native/status-bar';
 import { SplashScreen } from '@ionic-native/splash-screen';
@@ -27,7 +28,8 @@ import { SplashScreen } from '@ionic-native/splash-screen';
     Job,
     JobOffer,
     Blog,
-    BlogStory
+    BlogStory,
+    AddStory
   ],
   imports: [
     BrowserModule,
@@ -43,7 +45,8 @@ import { SplashScreen } from '@ionic-native/splash-screen';
     Job,
     JobOffer,
     Blog,
-    BlogStory
+    BlogStory,
+    AddStory
   ],
   providers: [
     StatusBar,

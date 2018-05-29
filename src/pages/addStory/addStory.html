@@ -1,0 +1,35 @@
+<ion-header>
+    <ion-navbar>
+      <button ion-button menuToggle>
+        <ion-icon name="menu"></ion-icon>
+      </button>
+      <ion-title>Dodaj priču</ion-title>
+    </ion-navbar>
+  </ion-header>
+  
+  <ion-content>
+    <ion-grid>
+        <ion-row>
+                <ion-item>
+                    <ion-label class="red" floating>Email</ion-label>
+                    <ion-input type="email" [(ngModel)]="email"></ion-input>
+                </ion-item>
+        </ion-row>
+        <ion-row>
+                    <ion-item>
+                        <ion-label floating>Naslov</ion-label>
+                        <ion-textarea type="text" rows="2" [(ngModel)]="naslov"></ion-textarea>
+                    </ion-item>  
+        </ion-row>
+        <ion-row>
+                    <ion-item>
+                        <ion-label floating>Tekst</ion-label>
+                        <ion-input type="text" [(ngModel)]="tekst"></ion-input>
+                    </ion-item>
+        </ion-row>
+        <ion-row>
+            <button ion-button class="objavi" round (click)="addOffer()">Objavi</button>
+        </ion-row>
+    </ion-grid>
+  </ion-content>
+  

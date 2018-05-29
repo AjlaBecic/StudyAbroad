@@ -1,5 +1,6 @@
 import { Component } from '@angular/core';
 import { NavController, NavParams } from 'ionic-angular';
+import { SQLite, SQLiteObject } from '@ionic-native/sqlite';
 
 import { BlogStory } from '../blogStory/blogStory';
 
@@ -8,26 +9,33 @@ import { BlogStory } from '../blogStory/blogStory';
   templateUrl: 'blog.html'
 })
 export class Blog {
-    stories: Array<{id: number, naslov: string, tekst: string}>;
+    stories: Array<{id: number, naslov: string, tekst: string, email: string}>;
 
-  constructor(public navCtrl: NavController) {
+  constructor(public navCtrl: NavController, private sqlite: SQLite) {
     
-    this.stories=
-    [
-        {id: 1, naslov: "Moja prva prica", tekst:"gagaggagagaga"}, {id: 2, naslov: "Moja prva prica", tekst:"gagaggagagaga"},
-        {id: 3, naslov: "Moja prva prica", tekst:"gagaggagagaga"}, {id: 4, naslov: "Moja prva prica", tekst:"gagaggagagaga"},
-        {id: 5, naslov: "Moja prva prica", tekst:"gagaggagagaga"}, {id: 6, naslov: "Moja prva prica", tekst:"gagaggagagaga"},
-        {id: 7, naslov: "Moja prva prica", tekst:"gagaggagagaga"}, {id: 8, naslov: "Moja prva prica", tekst:"gagaggagagaga"},
-        {id: 9, naslov: "Moja prva prica", tekst:"gagaggagagaga"}, {id: 10, naslov: "Moja prva prica", tekst:"gagaggagagaga"},
-        {id: 11, naslov: "Moja prva prica", tekst:"gagaggagagaga"}, {id: 12, naslov: "Moja prva prica", tekst:"gagaggagagaga"},
-        {id: 13, naslov: "Moja prva prica", tekst:"gagaggagagaga"}, {id: 14, naslov: "Moja prva prica", tekst:"gagaggagagaga"}
-    ]
+    this.stories = [];
   }
 
   open(Id:number) {
     //this.navCtrl.push(this.pages.find(item => item.title == page).component);
     this.navCtrl.setRoot(BlogStory, {naslov: this.stories.find(item => item.id == Id).naslov, tekst: this.stories.find(item => item.id == Id).tekst});
     
+  }
+
+  ionViewDidLoad(){
+    this.sqlite.create({
+      name: 'ionicdb.db',
+      location: 'default'
+    }).then((db: SQLiteObject) => {    
+        db.executeSql('SELECT * FROM blog ORDER BY id DESC', {})
+        .then(res => {
+          this.stories = [];
+          for(var i=0; i<res.rows.length; i++) {
+            this.stories.push({id:res.rows.item(i).id,naslov:res.rows.item(i).naslov,tekst:res.rows.item(i).tekst,email:res.rows.item(i).email})
+          }
+        })
+        .catch(e => {});
+      }).catch(e => {});
   }
 
 }

@@ -9,6 +9,7 @@ import { Scolarship } from '../pages/scolarship/scolarship';
 import { Job } from '../pages/job/job';
 import { JobOffer } from '../pages/jobOffer/jobOffer';
 import { Blog } from '../pages/blog/blog';
+import { AddStory } from '../pages/addStory/addStory';
 
 @Component({
   templateUrl: 'app.html'
@@ -30,7 +31,8 @@ export class MyApp {
       { title: 'Stipendije', component: Scolarship },
       { title: 'Posao', component: Job },
       { title: 'Objavi ponudu za posao', component: JobOffer },
-      { title: 'Blog', component: Blog }
+      { title: 'Blog', component: Blog },
+      { title: 'Dodaj priču', component: AddStory }
     ];
 
   }

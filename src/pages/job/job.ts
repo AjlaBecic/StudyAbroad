@@ -14,6 +14,7 @@ export class Job {
   query: string;
   grad: string;
   oblast: string;
+  tekst: string;
   gradovi: Array<{ value: number, naziv: string}>;
   jobs: Array<{id:number, naslov: string, grad: string, firma: string, trajanje: Date, oblast: string, telefon: string, email: string, link: string}>;
 
@@ -56,6 +57,7 @@ export class Job {
   }
 
   getJobs(){
+    this.tekst = this.query;
     this.sqlite.create({
       name: 'ionicdb.db',
       location: 'default'

@@ -17,7 +17,7 @@ export class Job {
   gradovi: Array<{ value: number, naziv: string}>;
   jobs: Array<{id:number, naslov: string, grad: string, firma: string, trajanje: Date, oblast: string, telefon: string, email: string, link: string}>;
 
-  constructor(public navCtrl: NavController, public navParams: NavParams, private sqlite: SQLite, private browserTab: BrowserTab) {
+  constructor(public navCtrl: NavController, public navParams: NavParams, private sqlite: SQLite) {
     this.gradovi = 
     [
       { value: 1, naziv: 'Amsterdam'}, { value: 2, naziv: 'Beč'},

@@ -65,7 +65,7 @@ export class HomePage {
 
 
       }).catch(e => {});
-      /*this.emailComposer.isAvailable().then((available: boolean) =>{
+      this.emailComposer.isAvailable().then((available: boolean) =>{
         if(available) {
           //Now we know we can send
         }
@@ -82,7 +82,7 @@ export class HomePage {
        };
        
        // Send a text message using default options
-       this.emailComposer.open(email);*/
+       this.emailComposer.open(email);
   }
 
 }

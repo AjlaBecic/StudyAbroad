@@ -3,8 +3,7 @@ import { ErrorHandler, NgModule } from '@angular/core';
 import { IonicApp, IonicErrorHandler, IonicModule } from 'ionic-angular';
 
 import { SQLite } from '@ionic-native/sqlite';
-import { BrowserTab } from '@ionic-native/browser-tab';
-import { EmailProvider } from '../providers/email/email';
+import { EmailComposer } from '@ionic-native/email-composer';
 
 import { MyApp } from './app.component';
 import { HomePage } from '../pages/home/home';
@@ -55,8 +54,7 @@ import { SplashScreen } from '@ionic-native/splash-screen';
     SplashScreen,
     {provide: ErrorHandler, useClass: IonicErrorHandler},
     SQLite,
-    BrowserTab,
-    EmailProvider
+    EmailComposer
   ]
 })
 export class AppModule {}

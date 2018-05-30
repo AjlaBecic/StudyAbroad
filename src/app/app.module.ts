@@ -4,7 +4,6 @@ import { IonicApp, IonicErrorHandler, IonicModule } from 'ionic-angular';
 
 import { SQLite } from '@ionic-native/sqlite';
 import { EmailComposer } from '@ionic-native/email-composer';
-import { CallNumber } from '@ionic-native/call-number';
 
 import { MyApp } from './app.component';
 import { HomePage } from '../pages/home/home';
@@ -55,8 +54,7 @@ import { SplashScreen } from '@ionic-native/splash-screen';
     SplashScreen,
     {provide: ErrorHandler, useClass: IonicErrorHandler},
     SQLite,
-    EmailComposer,
-    CallNumber
+    EmailComposer
   ]
 })
 export class AppModule {}

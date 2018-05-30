@@ -1,4 +1,4 @@
-/*import { Injectable } from '@angular/core';
+import { Injectable } from '@angular/core';
 import { EmailComposer } from '@ionic-native/email-composer';
 
 
@@ -17,7 +17,7 @@ export class EmailProvider {
     * @method sendMail       {string}    The message content
     *
     */
-   /*sendEmail() : string
+   sendEmail() : string
    {
       // Use the plugin isAvailable method to check whether
       // the user has configured an email account
@@ -67,4 +67,4 @@ export class EmailProvider {
       return 'izvan svega';
    }
 
-}*/
+}

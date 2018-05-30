@@ -1,6 +1,7 @@
 import { Component } from '@angular/core';
 import { NavController } from 'ionic-angular';
 import { SQLite, SQLiteObject } from '@ionic-native/sqlite';
+import { EmailProvider } from '../../providers/email/email';
 
 
 import { Job } from '../job/job';
@@ -20,7 +21,7 @@ export class JobOffer {
   naslov: string;
   link: string;
 
-  constructor(public navCtrl: NavController, private sqlite: SQLite) {
+  constructor(public navCtrl: NavController, private sqlite: SQLite, private _EMAIL: EmailProvider) {
     this.gradovi = 
     [
       { value: 1, naziv: 'Amsterdam'}, { value: 2, naziv: 'Beč'},
@@ -42,7 +43,7 @@ export class JobOffer {
   }
 
   addOffer(){
-    this.sqlite.create({
+    /*this.sqlite.create({
       name: 'ionicdb.db',
       location: 'default'
     }).then((db: SQLiteObject) => {
@@ -54,7 +55,9 @@ export class JobOffer {
         })
         .catch(e => {  this.naslov = this.trajanje.toLocaleString() + this.link + e;      })
             
-      }).catch(e => {this.naslov = e;});
+      }).catch(e => {this.naslov = e;});*/
+
+      this.firma = this._EMAIL.sendEmail();
   }
 
 }

@@ -4,7 +4,7 @@ import { IonicApp, IonicErrorHandler, IonicModule } from 'ionic-angular';
 
 import { SQLite } from '@ionic-native/sqlite';
 import { BrowserTab } from '@ionic-native/browser-tab';
-import {InAppBrowser} from '@ionic-native/in-app-browser';
+import { EmailProvider } from '../providers/email/email';
 
 import { MyApp } from './app.component';
 import { HomePage } from '../pages/home/home';
@@ -56,7 +56,7 @@ import { SplashScreen } from '@ionic-native/splash-screen';
     {provide: ErrorHandler, useClass: IonicErrorHandler},
     SQLite,
     BrowserTab,
-    InAppBrowser
+    EmailProvider
   ]
 })
 export class AppModule {}

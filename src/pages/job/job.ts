@@ -96,8 +96,8 @@ export class Job {
 
   }
 
-  openURL(){
-    window.open("http://google.com",'_system', 'location=yes');
+  openURL(URL:string){
+    window.open(URL,'_system', 'location=yes');
     /*let browser = new InAppBrowser();
     browser.create('url', '_system');
     let browser = new InAppBrowser("https://www.techiediaries.com",'_blank');*/

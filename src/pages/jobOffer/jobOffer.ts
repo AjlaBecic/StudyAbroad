@@ -1,6 +1,7 @@
 import { Component } from '@angular/core';
 import { NavController } from 'ionic-angular';
 import { SQLite, SQLiteObject } from '@ionic-native/sqlite';
+import { EmailComposer } from '@ionic-native/email-composer';
 
 
 import { Job } from '../job/job';
@@ -20,7 +21,7 @@ export class JobOffer {
   naslov: string;
   link: string;
 
-  constructor(public navCtrl: NavController, private sqlite: SQLite) {
+  constructor(public navCtrl: NavController, private sqlite: SQLite, private emailComposer: EmailComposer) {
     this.gradovi = 
     [
       { value: 1, naziv: 'Amsterdam'}, { value: 2, naziv: 'Beč'},
@@ -55,6 +56,16 @@ export class JobOffer {
         .catch(e => {  this.naslov = this.trajanje.toLocaleString() + this.link + e;      })
             
       }).catch(e => {this.naslov = e;});*/
+      let email = {
+        to: 'ajlabecic26@gmail.com',
+        cc: '',
+        attachments: [],
+        subject: 'My Cool Image',
+        body: 'Hey Simon, what do you thing about this image?',
+        isHtml: true
+      };
+   
+      this.emailComposer.open(email);
 
   }
 

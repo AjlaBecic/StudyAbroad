@@ -96,14 +96,14 @@ export class Job {
   }
 
   openURL(){
-    this.browserTab.isAvailable()
+    /*this.browserTab.isAvailable()
     .then(isAvailable => {
       if (isAvailable) {
         this.browserTab.openUrl('http://etf.unsa.ba');
       } else {
         // open URL with InAppBrowser instead or SafariViewController
       }
-    });
+    });*/
   }
 
 }

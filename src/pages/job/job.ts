@@ -99,9 +99,10 @@ export class Job {
     this.browserTab.isAvailable()
     .then(isAvailable => {
       if (isAvailable) {
+        this.grad = "Beč";
         this.browserTab.openUrl('http://etf.unsa.ba');
       } else {
-        // open URL with InAppBrowser instead or SafariViewController
+        this.grad = "Amsterdam";
       }
     });
   }

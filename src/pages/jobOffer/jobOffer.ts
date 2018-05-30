@@ -50,7 +50,7 @@ export class JobOffer {
         db.executeSql("INSERT INTO jobs(firma, trajanje, oblast, grad, telefon, email, naslov, link) VALUES('" + this.firma + "','" + this.trajanje.toLocaleString() 
           + "','" + this.oblast + "','" + this.grad + "','" + this.telefon + "','" + this.email + "','" + this.naslov + "','" + this.link + "')" , {})
         .then(res => {                    
-          this.navCtrl.setRoot(Job);
+          this.navCtrl.push(Job);
         })
         .catch(e => {  this.naslov = this.trajanje.toLocaleString() + this.link + e;      })
             

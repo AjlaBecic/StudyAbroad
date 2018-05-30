@@ -28,7 +28,7 @@ export class AddStory {
 
         db.executeSql("INSERT INTO blog(naslov, tekst, email) VALUES('" + this.naslov + "','" + this.tekst + "','" + this.email + "')" , {})
         .then(res => {                    
-          this.navCtrl.setRoot(Blog);
+          this.navCtrl.push(Blog);
         })
         .catch(e => {})
             

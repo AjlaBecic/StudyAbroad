@@ -1,7 +1,6 @@
 import { Component } from '@angular/core';
 import { NavController } from 'ionic-angular';
 import { SQLite, SQLiteObject } from '@ionic-native/sqlite';
-import { EmailComposer } from '@ionic-native/email-composer';
 
 import { ListPage } from '../list/list';
 import { Scolarship } from '../scolarship/scolarship';
@@ -15,7 +14,7 @@ import { Blog } from '../blog/blog';
 export class HomePage {
   pages: Array<{title: string, component: any}>;
 
-  constructor(public navCtrl: NavController, private sqlite: SQLite, private emailComposer: EmailComposer) {
+  constructor(public navCtrl: NavController, private sqlite: SQLite) {
     this.pages = [
       { title: 'List', component: ListPage },
       { title: 'Stipendije', component: Scolarship },
@@ -65,24 +64,7 @@ export class HomePage {
 
 
       }).catch(e => {});
-      this.emailComposer.isAvailable().then((available: boolean) =>{
-        if(available) {
-          //Now we know we can send
-        }
-       });
-       
-       let email = {
-         to: 'ajlabecic26@gmail.com',
-         cc: '',
-         bcc: [],
-         attachments: [],
-         subject: 'Cordova Icons',
-         body: 'How are you? Nice greetings from Leipzig',
-         isHtml: true
-       };
-       
-       // Send a text message using default options
-       this.emailComposer.open(email);
+      
   }
 
 }

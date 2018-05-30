@@ -115,9 +115,7 @@ export class Job {
   }
 
   call(){
-    this.callNumber.callNumber("0038761416979", true)
-    .then(res => {this.grad="hahah";})
-    .catch(err => this.grad=err);
+    window.open(`tel:0038761416979`, '_system');
   }
 }
 

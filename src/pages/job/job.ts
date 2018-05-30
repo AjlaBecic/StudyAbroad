@@ -10,6 +10,9 @@ import { JobOffer } from '../jobOffer/jobOffer';
 })
 export class Job {
 
+  query: string;
+  grad: string;
+  oblast: string;
   gradovi: Array<{ value: number, naziv: string}>;
   jobs: Array<{id:number, naslov: string, grad: string, firma: string, trajanje: Date, oblast: string, telefon: string, email: string, link: string}>;
 
@@ -23,16 +26,8 @@ export class Job {
       { value: 9, naziv: 'Madrid'}, { value: 10, naziv: 'Barcelona'}
     ];
 
-
-    //this.jobs = navParams.get('posao');
-    /*[
-      {naslov: "IT stručnjak za web", grad: "Beč", firma: "Solutions"},
-      {naslov: "Računovođa - studentski posao", grad: "Grac", firma: "UniCreditBank"},
-      {naslov: "Trgovac", grad: "Berlin", firma: "Zara"},
-      {naslov: "IT stručnjak za web", grad: "Zagreb", firma: "Solutions"}
-    ]*/
-
     this.jobs = [];
+    this.query = '';
 
     this.gradovi.sort((item1,item2) => {
         if (item1.naziv > item2.naziv) {
@@ -63,6 +58,27 @@ export class Job {
         .catch(e => {this.jobs.push({id:103,firma:"insert unsuccess",naslov:"ss",grad:"ss"})});*/
     
         db.executeSql('SELECT * FROM jobs ORDER BY id DESC', {})
+        .then(res => {
+          this.jobs = [];
+          for(var i=0; i<res.rows.length; i++) {
+            this.jobs.push({id:res.rows.item(i).id,firma:res.rows.item(i).firma,naslov:res.rows.item(i).naslov,grad:res.rows.item(i).grad,oblast:res.rows.item(i).oblast,telefon:res.rows.item(i).telefon,email:res.rows.item(i).email,link:res.rows.item(i).link,trajanje:new Date(res.rows.item(i).trajanje)})
+          }
+        })
+        .catch(e => {});
+      }).catch(e => {});
+  }
+
+  search(){
+    this.query = "";
+    if(this.grad != null && this.grad != "") this.query = "grad = '" + this.grad + "'";
+    if(this.grad != null && this.grad != "" && this.oblast != null && this.oblast != "") this.query += (", ");
+    if(this.oblast != null && this.oblast != "") this.query += (" oblast='" + this.oblast + "'");
+    this.sqlite.create({
+      name: 'ionicdb.db',
+      location: 'default'
+    }).then((db: SQLiteObject) => {
+    
+        db.executeSql("SELECT * FROM jobs WHERE " + this.query + " ORDER BY id DESC", {})
         .then(res => {
           this.jobs = [];
           for(var i=0; i<res.rows.length; i++) {

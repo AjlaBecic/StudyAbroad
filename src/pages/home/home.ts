@@ -27,7 +27,7 @@ export class HomePage {
 
   nextpage(page:string) {
     //this.navCtrl.push(this.pages.find(item => item.title == page).component);
-    this.navCtrl.setRoot(this.pages.find(item => item.title == page).component);
+    this.navCtrl.push(this.pages.find(item => item.title == page).component);
   }
 
   ionViewDidLoad(){

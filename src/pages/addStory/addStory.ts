@@ -21,7 +21,7 @@ export class AddStory {
   }
 
   addOffer(){
-    /*this.sqlite.create({
+    this.sqlite.create({
       name: 'ionicdb.db',
       location: 'default'
     }).then((db: SQLiteObject) => {
@@ -32,10 +32,10 @@ export class AddStory {
         })
         .catch(e => {})
             
-      }).catch(e => {});*/
+      }).catch(e => {});
 
 
-      this.tekst = this._EMAIL.sendEmail();
+      //this.tekst = this._EMAIL.sendEmail();
   }
 
 }

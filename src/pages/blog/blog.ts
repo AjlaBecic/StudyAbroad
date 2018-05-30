@@ -18,7 +18,7 @@ export class Blog {
 
   open(Id:number) {
     //this.navCtrl.push(this.pages.find(item => item.title == page).component);
-    this.navCtrl.setRoot(BlogStory, {naslov: this.stories.find(item => item.id == Id).naslov, tekst: this.stories.find(item => item.id == Id).tekst});
+    this.navCtrl.push(BlogStory, {naslov: this.stories.find(item => item.id == Id).naslov, tekst: this.stories.find(item => item.id == Id).tekst});
     
   }
 

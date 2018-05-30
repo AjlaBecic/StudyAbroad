@@ -99,12 +99,12 @@ export class Job {
     window.open(URL,'_system', 'location=yes');
   }
 
-  sendEmail(adress: string){
+  sendEmail(adress: string, title: string){
     let email = {
       to: adress,
       cc: '',
       attachments: [],
-      subject: '',
+      subject: 'Odgovor na StudyAbroad priču: ' + title,
       body: '',
       isHtml: true
     };

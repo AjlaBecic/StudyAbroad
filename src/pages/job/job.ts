@@ -1,6 +1,7 @@
 import { Component } from '@angular/core';
 import { NavController, NavParams } from 'ionic-angular';
 import { SQLite, SQLiteObject } from '@ionic-native/sqlite';
+import { EmailComposer } from '@ionic-native/email-composer';
 
 import { JobOffer } from '../jobOffer/jobOffer';
 
@@ -16,7 +17,7 @@ export class Job {
   gradovi: Array<{ value: number, naziv: string}>;
   jobs: Array<{id:number, naslov: string, grad: string, firma: string, trajanje: Date, oblast: string, telefon: string, email: string, link: string}>;
 
-  constructor(public navCtrl: NavController, public navParams: NavParams, private sqlite: SQLite) {
+  constructor(public navCtrl: NavController, public navParams: NavParams, private sqlite: SQLite, private emailComposer: EmailComposer) {
     this.gradovi = 
     [
       { value: 1, naziv: 'Amsterdam'}, { value: 2, naziv: 'Beč'},
@@ -98,6 +99,18 @@ export class Job {
     window.open(URL,'_system', 'location=yes');
   }
 
+  sendEmail(adress: string, title: string){
+    let email = {
+      to: adress,
+      cc: '',
+      attachments: [],
+      subject: 'Odgovor na StudyAbroad priču: ' + title,
+      body: '',
+      isHtml: true
+    };
+ 
+    this.emailComposer.open(email);
+  }
 }
 
 

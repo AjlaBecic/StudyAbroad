@@ -1,6 +1,7 @@
 import { Component } from '@angular/core';
 import { NavController, NavParams } from 'ionic-angular';
 import { SQLite, SQLiteObject } from '@ionic-native/sqlite';
+import { EmailComposer } from '@ionic-native/email-composer';
 
 import { BlogStory } from '../blogStory/blogStory';
 
@@ -11,7 +12,7 @@ import { BlogStory } from '../blogStory/blogStory';
 export class Blog {
     stories: Array<{id: number, naslov: string, tekst: string, email: string}>;
 
-  constructor(public navCtrl: NavController, private sqlite: SQLite) {
+  constructor(public navCtrl: NavController, private sqlite: SQLite, private emailComposer: EmailComposer) {
     
     this.stories = [];
   }
@@ -36,6 +37,19 @@ export class Blog {
         })
         .catch(e => {});
       }).catch(e => {});
+  }
+
+  sendEmail(adress: string, title: string){
+    let email = {
+      to: adress,
+      cc: '',
+      attachments: [],
+      subject: 'Odgovor na StudyAbroad priču: ' + title,
+      body: '',
+      isHtml: true
+    };
+ 
+    this.emailComposer.open(email);
   }
 
 }

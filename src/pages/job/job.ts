@@ -1,6 +1,7 @@
 import { Component } from '@angular/core';
 import { NavController, NavParams } from 'ionic-angular';
 import { SQLite, SQLiteObject } from '@ionic-native/sqlite';
+import { BrowserTab } from '@ionic-native/browser-tab';
 
 import { JobOffer } from '../jobOffer/jobOffer';
 
@@ -16,7 +17,7 @@ export class Job {
   gradovi: Array<{ value: number, naziv: string}>;
   jobs: Array<{id:number, naslov: string, grad: string, firma: string, trajanje: Date, oblast: string, telefon: string, email: string, link: string}>;
 
-  constructor(public navCtrl: NavController, public navParams: NavParams, private sqlite: SQLite) {
+  constructor(public navCtrl: NavController, public navParams: NavParams, private sqlite: SQLite, private browserTab: BrowserTab) {
     this.gradovi = 
     [
       { value: 1, naziv: 'Amsterdam'}, { value: 2, naziv: 'Beč'},
@@ -92,6 +93,17 @@ export class Job {
   offer(){
     this.navCtrl.push(JobOffer);
 
+  }
+
+  openURL(){
+    this.browserTab.isAvailable()
+    .then(isAvailable => {
+      if (isAvailable) {
+        this.browserTab.openUrl('http://etf.unsa.ba');
+      } else {
+        // open URL with InAppBrowser instead or SafariViewController
+      }
+    });
   }
 
 }

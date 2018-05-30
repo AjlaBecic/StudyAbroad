@@ -104,7 +104,7 @@ export class Job {
       to: adress,
       cc: '',
       attachments: [],
-      subject: 'Odgovor na StudyAbroad priču: ' + title,
+      subject: 'Prijava za posao: ' + title,
       body: '',
       isHtml: true
     };

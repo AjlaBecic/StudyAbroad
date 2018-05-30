@@ -3,6 +3,7 @@ import { ErrorHandler, NgModule } from '@angular/core';
 import { IonicApp, IonicErrorHandler, IonicModule } from 'ionic-angular';
 
 import { SQLite } from '@ionic-native/sqlite';
+import { BrowserTab } from '@ionic-native/browser-tab';
 
 import { MyApp } from './app.component';
 import { HomePage } from '../pages/home/home';
@@ -52,7 +53,8 @@ import { SplashScreen } from '@ionic-native/splash-screen';
     StatusBar,
     SplashScreen,
     {provide: ErrorHandler, useClass: IonicErrorHandler},
-    SQLite
+    SQLite,
+    BrowserTab
   ]
 })
 export class AppModule {}

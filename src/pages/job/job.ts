@@ -14,7 +14,6 @@ export class Job {
   query: string;
   grad: string;
   oblast: string;
-  tekst: string;
   gradovi: Array<{ value: number, naziv: string}>;
   jobs: Array<{id:number, naslov: string, grad: string, firma: string, trajanje: Date, oblast: string, telefon: string, email: string, link: string}>;
 
@@ -49,7 +48,7 @@ export class Job {
   search(){
     this.query = "";
     if((this.grad != null && this.grad != "") || (this.oblast != null && this.oblast != "")) this.query += (" WHERE ");
-    if(this.grad != null && this.grad != "") this.query = "grad = '" + this.grad + "'";
+    if(this.grad != null && this.grad != "") this.query += "grad = '" + this.grad + "'";
     if(this.grad != null && this.grad != "" && this.oblast != null && this.oblast != "") this.query += (", ");
     if(this.oblast != null && this.oblast != "") this.query += (" oblast='" + this.oblast + "'");
 
@@ -57,7 +56,6 @@ export class Job {
   }
 
   getJobs(){
-    this.tekst = this.query;
     this.sqlite.create({
       name: 'ionicdb.db',
       location: 'default'

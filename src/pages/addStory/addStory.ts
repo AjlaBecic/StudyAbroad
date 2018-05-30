@@ -3,7 +3,7 @@ import { NavController, NavParams } from 'ionic-angular';
 import { SQLite, SQLiteObject } from '@ionic-native/sqlite';
 
 import { Blog } from '../blog/blog';
-import { EmailProvider } from '../../providers/email/email';
+//import { EmailProvider } from '../../providers/email/email';
 
 @Component({
   selector: 'page-addStory',
@@ -16,7 +16,7 @@ export class AddStory {
     tekst: string;
     email: string;
 
-  constructor(public navCtrl: NavController, public navParams: NavParams, private sqlite: SQLite,  private _EMAIL: EmailProvider) {
+  constructor(public navCtrl: NavController, public navParams: NavParams, private sqlite: SQLite/*,  private _EMAIL: EmailProvider*/) {
     
   }
 

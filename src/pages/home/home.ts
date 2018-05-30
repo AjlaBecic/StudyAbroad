@@ -1,7 +1,7 @@
 import { Component } from '@angular/core';
 import { NavController } from 'ionic-angular';
 import { SQLite, SQLiteObject } from '@ionic-native/sqlite';
-import { EmailComposer } from '@ionic-native/email-composer';
+//import { EmailComposer } from '@ionic-native/email-composer';
 
 import { ListPage } from '../list/list';
 import { Scolarship } from '../scolarship/scolarship';
@@ -15,7 +15,7 @@ import { Blog } from '../blog/blog';
 export class HomePage {
   pages: Array<{title: string, component: any}>;
 
-  constructor(public navCtrl: NavController, private sqlite: SQLite, private emailComposer: EmailComposer, private _EMAIL: EmailProvider) {
+  constructor(public navCtrl: NavController, private sqlite: SQLite/*, private emailComposer: EmailComposer, private _EMAIL: EmailProvider*/) {
     this.pages = [
       { title: 'List', component: ListPage },
       { title: 'Stipendije', component: Scolarship },

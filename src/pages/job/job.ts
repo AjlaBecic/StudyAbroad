@@ -2,6 +2,7 @@ import { Component } from '@angular/core';
 import { NavController, NavParams } from 'ionic-angular';
 import { SQLite, SQLiteObject } from '@ionic-native/sqlite';
 import { EmailComposer } from '@ionic-native/email-composer';
+import { CallNumber } from '@ionic-native/call-number';
 
 import { JobOffer } from '../jobOffer/jobOffer';
 
@@ -17,7 +18,8 @@ export class Job {
   gradovi: Array<{ value: number, naziv: string}>;
   jobs: Array<{id:number, naslov: string, grad: string, firma: string, trajanje: Date, oblast: string, telefon: string, email: string, link: string}>;
 
-  constructor(public navCtrl: NavController, public navParams: NavParams, private sqlite: SQLite, private emailComposer: EmailComposer) {
+  constructor(public navCtrl: NavController, public navParams: NavParams, private sqlite: SQLite, private emailComposer: EmailComposer,
+    private callNumber: CallNumber) {
     this.gradovi = 
     [
       { value: 1, naziv: 'Amsterdam'}, { value: 2, naziv: 'Beč'},
@@ -110,6 +112,12 @@ export class Job {
     };
  
     this.emailComposer.open(email);
+  }
+
+  call(){
+    this.callNumber.callNumber("0038761416979", true)
+    .then(res => {})
+    .catch(err => {});
   }
 }
 

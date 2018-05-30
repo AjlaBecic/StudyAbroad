@@ -2,6 +2,7 @@ import { Component } from '@angular/core';
 import { NavController, NavParams } from 'ionic-angular';
 import { SQLite, SQLiteObject } from '@ionic-native/sqlite';
 import { BrowserTab } from '@ionic-native/browser-tab';
+import {InAppBrowser} from '@ionic-native/in-app-browser';
 
 import { JobOffer } from '../jobOffer/jobOffer';
 
@@ -96,7 +97,11 @@ export class Job {
   }
 
   openURL(){
-    this.browserTab.isAvailable()
+    window.open("http://google.com",'_system', 'location=yes');
+    /*let browser = new InAppBrowser();
+    browser.create('url', '_system');
+    let browser = new InAppBrowser("https://www.techiediaries.com",'_blank');*/
+    /*this.browserTab.isAvailable()
     .then(isAvailable => {
       if (isAvailable) {
         this.grad = "Beč";
@@ -104,7 +109,7 @@ export class Job {
       } else {
         this.grad = "Amsterdam";
       }
-    });
+    });*/
   }
 
 }

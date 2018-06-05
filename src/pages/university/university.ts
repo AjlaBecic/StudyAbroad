@@ -27,15 +27,6 @@ import { GoogleMaps, GoogleMap, GoogleMapsEvent } from '@ionic-native/google-map
     //this.map = this.googleMaps.create('map_canvas');
     this.map = GoogleMaps.create('map_canvas');
     
-        // Wait the maps plugin is ready until the MAP_READY event
-        this.map.one(GoogleMapsEvent.MAP_READY).then(() => {
-    
-    
-          this.naslov='map is ready to use.';
-    
-    
-        }).catch( err =>{ this.naslov = err;});;
-    
           }
   
 }

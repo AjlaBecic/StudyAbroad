@@ -12,8 +12,8 @@ import { GoogleMaps, GoogleMap, GoogleMapsEvent } from '@ionic-native/google-map
     naslov: string;
   
     constructor(public navCtrl: NavController, private sqlite: SQLite) {
-        this.map = GoogleMaps.create('map_canvas');
         this.naslov = "necu";
+        this.map = GoogleMaps.create('map_canvas');
   
     }
   

@@ -63,7 +63,7 @@
       "mx.ferreyra.callnumber": {},
       "cordova-plugin-googlemaps": {
         "API_KEY_FOR_ANDROID": "AIzaSyBnXiZULB9xifbKMH62pH1aetug20S2BzA",
-        "API_KEY_FOR_IOS": "AIzaSyCBOgu3npsSPyFlh-YLIUQzKXls3IF4s0g"
+        "API_KEY_FOR_IOS": "AIzaSyBnXiZULB9xifbKMH62pH1aetug20S2BzA"
       }
     }
   }

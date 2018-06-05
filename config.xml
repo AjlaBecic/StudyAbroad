@@ -89,6 +89,6 @@
     <plugin name="mx.ferreyra.callnumber" spec="~0.0.2" />
     <plugin name="cordova-plugin-googlemaps" spec="^2.3.6">
         <variable name="API_KEY_FOR_ANDROID" value="AIzaSyBnXiZULB9xifbKMH62pH1aetug20S2BzA" />
-        <variable name="API_KEY_FOR_IOS" value="AIzaSyCBOgu3npsSPyFlh-YLIUQzKXls3IF4s0g" />
+        <variable name="API_KEY_FOR_IOS" value="AIzaSyBnXiZULB9xifbKMH62pH1aetug20S2BzA" />
     </plugin>
 </widget>

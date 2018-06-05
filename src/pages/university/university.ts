@@ -24,10 +24,10 @@ import { GoogleMaps, GoogleMap, GoogleMapsEvent } from '@ionic-native/google-map
     loadMap() {
         
             // Create a map after the view is ready and the native platform is ready.
-    //this.map = this.googleMaps.create('map_canvas');
     this.map = GoogleMaps.create('map_canvas');
+    this.naslov = "necu";
     
-          }
+    }
   
 }
   

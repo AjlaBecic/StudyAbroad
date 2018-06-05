@@ -6,6 +6,7 @@ import { ListPage } from '../list/list';
 import { Scolarship } from '../scolarship/scolarship';
 import { Job } from '../job/job';
 import { Blog } from '../blog/blog';
+import { University } from '../university/university';
 
 @Component({
   selector: 'page-home',
@@ -19,7 +20,8 @@ export class HomePage {
       { title: 'List', component: ListPage },
       { title: 'Stipendije', component: Scolarship },
       { title: 'Posao', component: Job },
-      { title: 'Blog', component: Blog }
+      { title: 'Blog', component: Blog },
+      { title: 'Univerzitet', component: University }
     ];
 
   }

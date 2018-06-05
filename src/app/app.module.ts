@@ -4,6 +4,7 @@ import { IonicApp, IonicErrorHandler, IonicModule } from 'ionic-angular';
 
 import { SQLite } from '@ionic-native/sqlite';
 import { EmailComposer } from '@ionic-native/email-composer';
+import { GoogleMaps } from "@ionic-native/google-maps";
 
 import { MyApp } from './app.component';
 import { HomePage } from '../pages/home/home';
@@ -54,7 +55,8 @@ import { SplashScreen } from '@ionic-native/splash-screen';
     SplashScreen,
     {provide: ErrorHandler, useClass: IonicErrorHandler},
     SQLite,
-    EmailComposer
+    EmailComposer,
+    GoogleMaps
   ]
 })
 export class AppModule {}

@@ -55,7 +55,7 @@ export class Scolarship {
   search(){
     this.query = "";
     if((this.grad != null && this.grad != "") || (this.oblast != null && this.oblast != "") || (this.ciklus != null && this.ciklus != "")) this.query += (" WHERE ");
-    if(this.grad != null && this.grad != "") this.query = "grad = '" + this.grad + "'";
+    if(this.grad != null && this.grad != "") this.query += "grad = '" + this.grad + "'";
     if(this.query != "") this.query += (", ");
     if(this.oblast != null && this.oblast != "") this.query += (" oblast='" + this.oblast + "'");
     if(this.query != "") this.query += (", ");

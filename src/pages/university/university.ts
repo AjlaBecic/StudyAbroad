@@ -11,7 +11,7 @@ import { GoogleMaps, GoogleMap, GoogleMapsEvent } from '@ionic-native/google-map
     pages: Array<{title: string, component: any}>;
     map: GoogleMap;
   
-    constructor(public navCtrl: NavController, private sqlite: SQLite) {
+    constructor(public navCtrl: NavController, private sqlite: SQLite, private googleMaps: GoogleMaps) {
       
   
     }
@@ -23,7 +23,7 @@ import { GoogleMaps, GoogleMap, GoogleMapsEvent } from '@ionic-native/google-map
     loadMap() {
         
             // Create a map after the view is ready and the native platform is ready.
-    this.map = GoogleMaps.create('map_canvas');
+    this.map = this.googleMaps.create('map_canvas');
     
         // No longer wait GoogleMapsEvent.MAP_READY event
         // ( except you use map.getVisibleRegion() )

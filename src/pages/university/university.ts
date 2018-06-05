@@ -10,6 +10,7 @@ import { GoogleMaps, GoogleMap, GoogleMapsEvent } from '@ionic-native/google-map
   export class University {
     pages: Array<{title: string, component: any}>;
     map: GoogleMap;
+    naslov: string;
   
     constructor(public navCtrl: NavController, private sqlite: SQLite, private googleMaps: GoogleMaps) {
       
@@ -30,10 +31,10 @@ import { GoogleMaps, GoogleMap, GoogleMapsEvent } from '@ionic-native/google-map
         this.map.one(GoogleMapsEvent.MAP_READY).then(() => {
     
     
-          console.log('map is ready to use.');
+          this.naslov='map is ready to use.';
     
     
-        });
+        }).catch( err =>{ this.naslov = err;});;
     
           }
   

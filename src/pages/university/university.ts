@@ -12,7 +12,7 @@ import { GoogleMaps, GoogleMap, GoogleMapsEvent } from '@ionic-native/google-map
     map: GoogleMap;
     naslov: string;
   
-    constructor(public navCtrl: NavController, private sqlite: SQLite, private googleMaps: GoogleMaps) {
+    constructor(public navCtrl: NavController, private sqlite: SQLite) {
       
   
     }

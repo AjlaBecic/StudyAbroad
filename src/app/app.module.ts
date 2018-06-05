@@ -16,6 +16,7 @@ import { JobOffer } from '../pages/jobOffer/jobOffer';
 import { Blog } from '../pages/blog/blog';
 import { BlogStory } from '../pages/blogStory/blogStory';
 import { AddStory } from '../pages/addStory/addStory';
+import { University } from '../pages/university/university';
 
 import { StatusBar } from '@ionic-native/status-bar';
 import { SplashScreen } from '@ionic-native/splash-screen';
@@ -31,7 +32,8 @@ import { SplashScreen } from '@ionic-native/splash-screen';
     JobOffer,
     Blog,
     BlogStory,
-    AddStory
+    AddStory,
+    University
   ],
   imports: [
     BrowserModule,
@@ -48,7 +50,8 @@ import { SplashScreen } from '@ionic-native/splash-screen';
     JobOffer,
     Blog,
     BlogStory,
-    AddStory
+    AddStory,
+    University
   ],
   providers: [
     StatusBar,

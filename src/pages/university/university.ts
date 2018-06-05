@@ -23,10 +23,18 @@ import { GoogleMaps, GoogleMap, GoogleMapsEvent } from '@ionic-native/google-map
     loadMap() {
         
             // Create a map after the view is ready and the native platform is ready.
-    this.map = this.googleMaps.create('map_canvas');
+    //this.map = this.googleMaps.create('map_canvas');
+    this.map = GoogleMaps.create('map_canvas');
     
-        // No longer wait GoogleMapsEvent.MAP_READY event
-        // ( except you use map.getVisibleRegion() )
+        // Wait the maps plugin is ready until the MAP_READY event
+        this.map.one(GoogleMapsEvent.MAP_READY).then(() => {
+    
+    
+          console.log('map is ready to use.');
+    
+    
+        });
+    
           }
   
 }

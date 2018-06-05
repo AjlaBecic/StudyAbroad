@@ -1,7 +1,15 @@
 import { Component } from '@angular/core';
 import { NavController } from 'ionic-angular';
 import { SQLite, SQLiteObject } from '@ionic-native/sqlite';
-import { GoogleMaps, GoogleMap, GoogleMapsEvent } from '@ionic-native/google-maps';
+import {
+    GoogleMaps,
+    GoogleMap,
+    GoogleMapsEvent,
+    GoogleMapOptions,
+    CameraPosition,
+    MarkerOptions,
+    Marker
+  } from '@ionic-native/google-maps';
 
 @Component({
     selector: 'page-university',
@@ -21,11 +29,33 @@ import { GoogleMaps, GoogleMap, GoogleMapsEvent } from '@ionic-native/google-map
     }
     
     loadMap() {
-    
-        // Create a map after the view is ready and the native platform is ready.
-        this.map = GoogleMaps.create('map_canvas');
-    
-    }
+        
+            let mapOptions: GoogleMapOptions = {
+              camera: {
+                 target: {
+                   lat: 43.0741904,
+                   lng: -89.3809802
+                 },
+                 zoom: 18,
+                 tilt: 30
+               }
+            };
+        
+            this.map = GoogleMaps.create('map_canvas', mapOptions);
+        
+            let marker: Marker = this.map.addMarkerSync({
+              title: 'Ionic',
+              icon: 'blue',
+              animation: 'DROP',
+              position: {
+                lat: 43.0741904,
+                lng: -89.3809802
+              }
+            });
+            marker.on(GoogleMapsEvent.MARKER_CLICK).subscribe(() => {
+              alert('clicked');
+            });
+          }
   
 }
   

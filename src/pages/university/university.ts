@@ -8,18 +8,17 @@ import { GoogleMaps, GoogleMap, GoogleMapsEvent } from '@ionic-native/google-map
     templateUrl: 'university.html'
   })
   export class University {
-    pages: Array<{title: string, component: any}>;
     map: GoogleMap;
     naslov: string;
   
     constructor(public navCtrl: NavController, private sqlite: SQLite) {
-      
+        this.map = GoogleMaps.create('map_canvas');
+        this.naslov = "necu";
   
     }
   
     ionViewDidLoad() {
-        this.map = GoogleMaps.create('map_canvas');
-        this.naslov = "necu";
+        
     }
     
     loadMap() {

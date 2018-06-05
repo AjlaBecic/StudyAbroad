@@ -18,7 +18,8 @@ import { GoogleMaps, GoogleMap, GoogleMapsEvent } from '@ionic-native/google-map
     }
   
     ionViewDidLoad() {
-        this.loadMap();
+        this.map = GoogleMaps.create('map_canvas');
+        this.naslov = "necu";
     }
     
     loadMap() {

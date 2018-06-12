@@ -1,7 +1,7 @@
 import { Component } from '@angular/core';
 import { NavController } from 'ionic-angular';
 import { SQLite, SQLiteObject } from '@ionic-native/sqlite';
-import { ViewChild } from '@angular/core/src/metadata/di';
+//import { ViewChild } from '@angular/core/src/metadata/di';
 import {
     GoogleMaps,
     GoogleMap,
@@ -11,6 +11,8 @@ import {
     MarkerOptions,
     Marker
   } from '@ionic-native/google-maps';
+
+  declare var google;
 
 @Component({
     selector: 'page-university',
@@ -37,40 +39,29 @@ import {
     
     }*/
 
-    map: GoogleMap;
-    constructor() { }
-  
-    ionViewDidLoad() {
+    @ViewChild('map') mapElement: ElementRef;
+    map: any;
+   
+    constructor(public navCtrl: NavController) {
+   
+    }
+   
+    ionViewDidLoad(){
       this.loadMap();
     }
-  
-    loadMap() {
-  
-      let mapOptions: GoogleMapOptions = {
-        camera: {
-           target: {
-             lat: 43.0741904,
-             lng: -89.3809802
-           },
-           zoom: 18,
-           tilt: 30
-         }
-      };
-  
-      this.map = GoogleMaps.create('map_canvas', mapOptions);
-  
-      let marker: Marker = this.map.addMarkerSync({
-        title: 'Ionic',
-        icon: 'blue',
-        animation: 'DROP',
-        position: {
-          lat: 43.0741904,
-          lng: -89.3809802
-        }
-      });
-      marker.on(GoogleMapsEvent.MARKER_CLICK).subscribe(() => {
-        alert('clicked');
-      });
+   
+    loadMap(){
+   
+      let latLng = new google.maps.LatLng(-34.9290, 138.6010);
+   
+      let mapOptions = {
+        center: latLng,
+        zoom: 15,
+        mapTypeId: google.maps.MapTypeId.ROADMAP
+      }
+   
+      this.map = new google.maps.Map(this.mapElement.nativeElement, mapOptions);
+   
     }
   
   }

@@ -41,7 +41,7 @@ import {
               console.log('map is ready to use.');
         
         
-            });
+            }).catch(err => console.log(err));
         
     
     }

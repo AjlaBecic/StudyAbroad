@@ -46,8 +46,8 @@ import { ViewChild } from '@angular/core/src/metadata/di';
   import { ViewChild } from '@angular/core/src/metadata/di';
   
   @Component({
-    selector: 'page-home',
-    templateUrl: 'home.html'
+    selector: 'page-university',
+    templateUrl: 'university.html'
   })
   export class University {
     map: GoogleMap;

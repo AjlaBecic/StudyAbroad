@@ -32,10 +32,17 @@ import {
     }
     
     loadMap() {
+        this.map = GoogleMaps.create('map_canvas');
         
-            // Create a map after the view is ready and the native platform is ready.
-    this.map = this.gmap.create('map_canvas');
-    this.naslov = "necu";
+            // Wait the maps plugin is ready until the MAP_READY event
+            this.map.one(GoogleMapsEvent.MAP_READY).then(() => {
+        
+        
+              console.log('map is ready to use.');
+        
+        
+            });
+        
     
     }
   

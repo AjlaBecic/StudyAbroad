@@ -23,7 +23,7 @@ import {
     map: GoogleMap;
     naslov: string;
   
-    constructor(public navCtrl: NavController, private sqlite: SQLite) {
+    constructor(public navCtrl: NavController, private sqlite: SQLite, private gmap: GoogleMaps) {
   
     }
   
@@ -34,7 +34,7 @@ import {
     loadMap() {
         
             // Create a map after the view is ready and the native platform is ready.
-    this.map = GoogleMaps.create('map_canvas');
+    this.map = this.gmap.create('map_canvas');
     this.naslov = "necu";
     
     }

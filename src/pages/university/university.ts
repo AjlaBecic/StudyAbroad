@@ -1,8 +1,16 @@
-/*import { Component } from '@angular/core';
+import { Component } from '@angular/core';
 import { NavController } from 'ionic-angular';
 import { SQLite, SQLiteObject } from '@ionic-native/sqlite';
-import { GoogleMaps, GoogleMap, GoogleMapsEvent } from '@ionic-native/google-maps';
 import { ViewChild } from '@angular/core/src/metadata/di';
+import {
+    GoogleMaps,
+    GoogleMap,
+    GoogleMapsEvent,
+    GoogleMapOptions,
+    CameraPosition,
+    MarkerOptions,
+    Marker
+  } from '@ionic-native/google-maps';
 
 @Component({
     selector: 'page-university',
@@ -10,7 +18,7 @@ import { ViewChild } from '@angular/core/src/metadata/di';
   })
   export class University {
     
-    map: GoogleMap;
+    /*map: GoogleMap;
     naslov: string;
   
     constructor(public navCtrl: NavController, private sqlite: SQLite) {
@@ -27,30 +35,8 @@ import { ViewChild } from '@angular/core/src/metadata/di';
     this.map = GoogleMaps.create('map_canvas');
     this.naslov = "necu";
     
-    }
-  
-  }*/
+    }*/
 
-  import { Component } from '@angular/core';
-  import { NavController } from 'ionic-angular';
-  import { SQLite, SQLiteObject } from '@ionic-native/sqlite';
-  import { ViewChild } from '@angular/core/src/metadata/di';
-  
-  import {
-    GoogleMaps,
-    GoogleMap,
-    GoogleMapsEvent,
-    GoogleMapOptions,
-    CameraPosition,
-    MarkerOptions,
-    Marker
-  } from '@ionic-native/google-maps';
-  
-  @Component({
-    selector: 'page-university',
-    templateUrl: 'university.html'
-  })
-  export class University {
     map: GoogleMap;
     constructor() { }
   
@@ -86,5 +72,7 @@ import { ViewChild } from '@angular/core/src/metadata/di';
         alert('clicked');
       });
     }
+  
   }
+
   

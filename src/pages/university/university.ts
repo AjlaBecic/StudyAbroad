@@ -40,7 +40,10 @@ import { ViewChild } from '@angular/core/src/metadata/di';
     MarkerOptions,
     Marker
   } from '@ionic-native/google-maps';
-  import { Component } from "@angular/core/";
+  import { Component } from '@angular/core';
+  import { NavController } from 'ionic-angular';
+  import { SQLite, SQLiteObject } from '@ionic-native/sqlite';
+  import { ViewChild } from '@angular/core/src/metadata/di';
   
   @Component({
     selector: 'page-home',

@@ -57,7 +57,7 @@ export class JobOffer {
             
       }).catch(e => {this.naslov = e;});*/
 
-      /*let toSave = {
+      let toSave = {
         naslov: this.naslov,
         grad: this.grad,
         firma: this.firma,
@@ -68,7 +68,7 @@ export class JobOffer {
         link: this.link
       }
       this.fdb.list('jobs').push(toSave);                    
-      this.navCtrl.push(Job);*/
+      this.navCtrl.push(Job);
 
   }
 

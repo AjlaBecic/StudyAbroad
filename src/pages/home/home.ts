@@ -50,24 +50,11 @@ export class HomePage {
   snap.val(); // Keep the local user object synced with the Firebase userRef 
  });*/
    
-      ref.snapshotChanges().map(changes => {
-        console.log('changes');
+      ref.snapshotChanges().forEach(changes => {
+        console.log(changes);
+        changes.forEach(x => console.log(x.payload.val().firma));
+        changes.map(x => console.log(x.key));
       });
-
-      
-
-    console.log("tu sam");
-    let toSave = {
-      naslov: 'Web developer',
-      grad: 'Zagreb',
-      firma: 'Solutions',
-      trajanje: '26.07.2018.',
-      oblast: 'IT',
-      telefon: '061416979',
-      email: 'ajlaa.be@gmail.com',
-      link: 'http://etf.unsa.ba'
-    }
-    this.fdb.list('jobs').push(toSave);
 
   }
 

@@ -33,9 +33,41 @@ export class HomePage {
       console.log(this.arrData);
       _data.forEach(x => console.log(x.$key));
       _data.map((tourData) => {
+        //Create and fill a TourSnapshot component
         console.log(tourData.created);
-      });
+        //let tourSnap = new TourSnapshot(tourData.name, tourData.$key);
+        //tourSnap.description = tourData.description;
+        //[..]
+        //this.tours.push(tourSnap);
+        //Return an array through my own observable
+        //return this.toursObservable.next(this.tours);
+    });
     });*/
+
+    var ref = this.fdb.list('/jobs/');
+
+/*ref.on('value', function (snap) {
+  snap.val(); // Keep the local user object synced with the Firebase userRef 
+ });*/
+   
+      ref.snapshotChanges().map(changes => {
+        console.log('changes');
+      });
+
+      
+
+    console.log("tu sam");
+    let toSave = {
+      naslov: 'Web developer',
+      grad: 'Zagreb',
+      firma: 'Solutions',
+      trajanje: '26.07.2018.',
+      oblast: 'IT',
+      telefon: '061416979',
+      email: 'ajlaa.be@gmail.com',
+      link: 'http://etf.unsa.ba'
+    }
+    this.fdb.list('jobs').push(toSave);
 
   }
 

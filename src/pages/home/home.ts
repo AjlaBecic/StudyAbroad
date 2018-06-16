@@ -28,28 +28,7 @@ export class HomePage {
     ];
 
 
-    /*this.fdb.list("/jobs/").subscribe(_data => {
-      this.arrData = _data;
-      console.log(this.arrData);
-      _data.forEach(x => console.log(x.$key));
-      _data.map((tourData) => {
-        //Create and fill a TourSnapshot component
-        console.log(tourData.created);
-        //let tourSnap = new TourSnapshot(tourData.name, tourData.$key);
-        //tourSnap.description = tourData.description;
-        //[..]
-        //this.tours.push(tourSnap);
-        //Return an array through my own observable
-        //return this.toursObservable.next(this.tours);
-    });
-    });*/
-
-    var ref = this.fdb.list('/jobs/');
-
-/*ref.on('value', function (snap) {
-  snap.val(); // Keep the local user object synced with the Firebase userRef 
- });*/
-   
+    var ref = this.fdb.list('/jobs/');   
       ref.snapshotChanges().forEach(changes => {
         console.log(changes);
         changes.forEach(x => console.log(x.payload.val().firma));

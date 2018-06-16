@@ -2,6 +2,7 @@ import { Component } from '@angular/core';
 import { NavController, NavParams } from 'ionic-angular';
 import { SQLite, SQLiteObject } from '@ionic-native/sqlite';
 import { EmailComposer } from '@ionic-native/email-composer';
+import { AngularFireDatabase } from 'angularfire2/database';
 
 import { JobOffer } from '../jobOffer/jobOffer';
 
@@ -15,9 +16,10 @@ export class Job {
   grad: string;
   oblast: string;
   gradovi: Array<{ value: number, naziv: string}>;
-  jobs: Array<{id:number, naslov: string, grad: string, firma: string, trajanje: Date, oblast: string, telefon: string, email: string, link: string}>;
+  jobs: Array<{id:string, naslov: string, grad: string, firma: string, trajanje: Date, oblast: string, telefon: string, email: string, link: string}>;
 
-  constructor(public navCtrl: NavController, public navParams: NavParams, private sqlite: SQLite, private emailComposer: EmailComposer) {
+  constructor(public navCtrl: NavController, public navParams: NavParams, private sqlite: SQLite, private emailComposer: EmailComposer, 
+    private fdb: AngularFireDatabase) {
     this.gradovi = 
     [
       { value: 1, naziv: 'Amsterdam'}, { value: 2, naziv: 'Beč'},
@@ -56,7 +58,7 @@ export class Job {
   }
 
   getJobs(){
-    this.sqlite.create({
+    /*this.sqlite.create({
       name: 'ionicdb.db',
       location: 'default'
     }).then((db: SQLiteObject) => {
@@ -73,7 +75,7 @@ export class Job {
         .then(res => {this.jobs.push({id:102,firma:"insert success",naslov:"ss",grad:"ss"})})
         .catch(e => {this.jobs.push({id:103,firma:"insert unsuccess",naslov:"ss",grad:"ss"})});*/
     
-        db.executeSql("SELECT * FROM jobs " + this.query + " ORDER BY id DESC", {})
+        /*db.executeSql("SELECT * FROM jobs " + this.query + " ORDER BY id DESC", {})
         .then(res => {
           this.jobs = [];
           for(var i=0; i<res.rows.length; i++) {
@@ -81,7 +83,14 @@ export class Job {
           }
         })
         .catch(e => {});
-      }).catch(e => {});
+      }).catch(e => {});*/
+
+      var ref = this.fdb.list('/jobs/');   
+      ref.snapshotChanges().forEach(changes => {
+        console.log(changes);
+        changes.forEach(x => this.jobs.push({id:x.key,firma:x.payload.val().firma,naslov:x.payload.val().naslov,grad:x.payload.val().grad,oblast:x.payload.val().oblast,telefon:x.payload.val().telefon,email:x.payload.val().email,link:x.payload.val().link,trajanje:new Date(x.payload.val().trajanje)}));
+        changes.map(x => console.log(x.key));
+      });
   }
 
   offer(){

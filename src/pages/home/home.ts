@@ -8,14 +8,17 @@ import { Job } from '../job/job';
 import { Blog } from '../blog/blog';
 import { University } from '../university/university';
 
+import { AngularFireDatabase } from 'angularfire2/database';
+
 @Component({
   selector: 'page-home',
   templateUrl: 'home.html'
 })
 export class HomePage {
   pages: Array<{title: string, component: any}>;
+  arrData = [];
 
-  constructor(public navCtrl: NavController, private sqlite: SQLite) {
+  constructor(public navCtrl: NavController, private sqlite: SQLite, private fdb: AngularFireDatabase) {
     this.pages = [
       { title: 'List', component: ListPage },
       { title: 'Stipendije', component: Scolarship },
@@ -23,6 +26,16 @@ export class HomePage {
       { title: 'Blog', component: Blog },
       { title: 'Univerzitet', component: University }
     ];
+
+
+    this.fdb.list("/jobs/").subscribe(_data => {
+      this.arrData = _data;
+      console.log(this.arrData);
+      _data.forEach(x => console.log(x.$key));
+      _data.map((tourData) => {
+        console.log(tourData.created);
+      });
+    });
 
   }
 

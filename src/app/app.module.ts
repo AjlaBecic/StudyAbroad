@@ -5,6 +5,8 @@ import { IonicApp, IonicErrorHandler, IonicModule } from 'ionic-angular';
 import { SQLite } from '@ionic-native/sqlite';
 import { EmailComposer } from '@ionic-native/email-composer';
 import { GoogleMaps } from "@ionic-native/google-maps";
+import { AngularFireModule } from 'angularfire2'
+import { AngularFireDatabaseModule } from 'angularfire2/database'
 
 import { MyApp } from './app.component';
 import { HomePage } from '../pages/home/home';
@@ -20,6 +22,15 @@ import { University } from '../pages/university/university';
 
 import { StatusBar } from '@ionic-native/status-bar';
 import { SplashScreen } from '@ionic-native/splash-screen';
+
+var config = {
+  apiKey: "AIzaSyDJbKP4AyMqP_0lGhSrtWiQaXNA3MfkW70",
+  authDomain: "abroad-8bb52.firebaseapp.com",
+  databaseURL: "https://abroad-8bb52.firebaseio.com",
+  projectId: "abroad-8bb52",
+  storageBucket: "abroad-8bb52.appspot.com",
+  messagingSenderId: "531617326067"
+};
 
 @NgModule({
   declarations: [
@@ -38,6 +49,8 @@ import { SplashScreen } from '@ionic-native/splash-screen';
   imports: [
     BrowserModule,
     IonicModule.forRoot(MyApp),
+    AngularFireDatabaseModule,
+    AngularFireModule.initializeApp(config)
   ],
   bootstrap: [IonicApp],
   entryComponents: [

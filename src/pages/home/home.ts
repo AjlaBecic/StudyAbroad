@@ -28,14 +28,14 @@ export class HomePage {
     ];
 
 
-    this.fdb.list("/jobs/").subscribe(_data => {
+    /*this.fdb.list("/jobs/").subscribe(_data => {
       this.arrData = _data;
       console.log(this.arrData);
       _data.forEach(x => console.log(x.$key));
       _data.map((tourData) => {
         console.log(tourData.created);
       });
-    });
+    });*/
 
   }
 

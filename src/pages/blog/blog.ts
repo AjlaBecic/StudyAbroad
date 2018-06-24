@@ -20,7 +20,6 @@ export class Blog {
   }
 
   open(Id:string) {
-    //this.navCtrl.push(this.pages.find(item => item.title == page).component);
     this.navCtrl.push(BlogStory, {naslov: this.stories.find(item => item.id == Id).naslov, tekst: this.stories.find(item => item.id == Id).tekst});
     
   }
@@ -44,7 +43,7 @@ export class Blog {
       ref.snapshotChanges().forEach(changes => {
           changes.forEach(x => 
           {
-            this.stories.push(new BlogItem(x.key, x.payload.val().naslov, x.payload.val().tekst, x.payload.val().email));
+            this.stories.push(new BlogItem(x.key, x.payload.val().naslov, x.payload.val().tekst, x.payload.val().email, this.fdb));
           });
 
       });

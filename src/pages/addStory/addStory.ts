@@ -1,9 +1,9 @@
 import { Component } from '@angular/core';
 import { NavController, NavParams } from 'ionic-angular';
+import { AngularFireDatabase } from 'angularfire2/database';
 import { SQLite, SQLiteObject } from '@ionic-native/sqlite';
-
 import { Blog } from '../blog/blog';
-//import { EmailProvider } from '../../providers/email/email';
+import { BlogItem } from '../../models/blogItem';
 
 @Component({
   selector: 'page-addStory',
@@ -16,12 +16,11 @@ export class AddStory {
     tekst: string;
     email: string;
 
-  constructor(public navCtrl: NavController, public navParams: NavParams, private sqlite: SQLite/*,  private _EMAIL: EmailProvider*/) {
-    
-  }
+  constructor(public navCtrl: NavController, public navParams: NavParams
+    , private sqlite: SQLite, private fdb: AngularFireDatabase) {}
 
   addOffer(){
-    this.sqlite.create({
+    /*this.sqlite.create({
       name: 'ionicdb.db',
       location: 'default'
     }).then((db: SQLiteObject) => {
@@ -32,10 +31,10 @@ export class AddStory {
         })
         .catch(e => {})
             
-      }).catch(e => {});
-
-
-      //this.tekst = this._EMAIL.sendEmail();
+      }).catch(e => {});*/
+      var item = new BlogItem('', this.naslov, this.tekst, this.email, this.fdb);
+      item.addItem();                        
+      this.navCtrl.push(Blog);
   }
 
 }

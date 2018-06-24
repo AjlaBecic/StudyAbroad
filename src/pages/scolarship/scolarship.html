@@ -17,7 +17,7 @@
         <ion-item>
           <ion-label>Grad</ion-label>
           <ion-select [(ngModel)]="grad">
-              <ion-option *ngFor="let item of gradovi" value="{{item.value}}">{{item.naziv}}</ion-option>
+              <ion-option *ngFor="let item of gradovi" value="{{item.naziv}}">{{item.naziv}}</ion-option>
           </ion-select>
         </ion-item>
       </ion-col>
@@ -36,10 +36,13 @@
         <ion-item>
             <ion-label>Oblast studija</ion-label>
             <ion-select [(ngModel)]="oblast">
-                <ion-option *ngFor="let item of oblasti" value="{{item.id}}">{{item.naziv}}</ion-option>
+                <ion-option *ngFor="let item of oblasti" value="{{item.naziv}}">{{item.naziv}}</ion-option>
             </ion-select>
           </ion-item>
     </ion-row>
+    <ion-row>
+      <button ion-button class="trazi" round (click)="getScolarships()">Traži</button>
+  </ion-row>
   </ion-grid>
   <ion-list>
       <ion-list-header class="list-header">

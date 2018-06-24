@@ -1,7 +1,11 @@
 import { Component } from '@angular/core';
-import { NavController } from 'ionic-angular';
+import { NavController, NavParams } from 'ionic-angular';
 import { SQLite, SQLiteObject } from '@ionic-native/sqlite';
 import { AddScolarship } from '../addScolarship/addScolarship';
+import { AngularFireDatabase } from 'angularfire2/database';
+
+import {ScolarshipItem} from '../../models/ScolarshipItem';
+import { City } from '../../models/City';
 
 @Component({
   selector: 'page-scolarship',
@@ -12,19 +16,13 @@ export class Scolarship {
   grad: string;
   oblast: string;
   ciklus: string;
-  gradovi: Array<{ value: number, naziv: string}>;
-  stipendije: Array<{ id: number, naslov: string, ciklus: string, trajanje: string, oblast: string, grad: string, link: number}>;
+  gradovi: Array<City>;
+  stipendije: Array<ScolarshipItem>;
   oblasti: Array<{id: number, naziv: string}>;
 
-  constructor(public navCtrl: NavController, private sqlite: SQLite) {
-    this.gradovi = 
-    [
-      { value: 1, naziv: 'Amsterdam'}, { value: 2, naziv: 'Beč'},
-      { value: 3, naziv: 'Beograd'}, { value: 4, naziv: 'Berlin'},
-      { value: 5, naziv: 'Graz'}, { value: 6, naziv: 'Novi Sad'},
-      { value: 7, naziv: 'London'}, { value: 8, naziv: 'Zagreb'},
-      { value: 9, naziv: 'Madrid'}, { value: 10, naziv: 'Barcelona'}
-    ];
+  constructor(public navCtrl: NavController, public navParams: NavParams, private sqlite: SQLite, private fdb: AngularFireDatabase) {
+    
+    this.gradovi = navParams.get('gradovi');
 
     this.stipendije = [];
     this.query = "";
@@ -48,12 +46,12 @@ export class Scolarship {
   }
 
   offer(){
-    this.navCtrl.push(AddScolarship);
+    this.navCtrl.push(AddScolarship, { gradovi: this.gradovi });
 
   }
 
   search(){
-    this.query = "";
+   /*this.query = "";
     if((this.grad != null && this.grad != "") || (this.oblast != null && this.oblast != "") || (this.ciklus != null && this.ciklus != "")) this.query += (" WHERE ");
     if(this.grad != null && this.grad != "") this.query += "grad = '" + this.grad + "'";
     if(this.query != "") this.query += (", ");
@@ -61,11 +59,11 @@ export class Scolarship {
     if(this.query != "") this.query += (", ");
     if(this.ciklus != null && this.ciklus != "") this.query += (" ciklus='" + this.ciklus + "'");
 
-    this.getScolarships();
+    this.getScolarships();*/
   }
 
   getScolarships(){
-    this.sqlite.create({
+    /*this.sqlite.create({
       name: 'ionicdb.db',
       location: 'default'
     }).then((db: SQLiteObject) => {    
@@ -76,7 +74,20 @@ export class Scolarship {
           }
         })
         .catch(e => {});
-      }).catch(e => {});
+      }).catch(e => {});*/
+
+      this.stipendije = [];
+      var ref = this.fdb.list('/scolarships/');   
+      ref.snapshotChanges().forEach(changes => {
+          changes.forEach(x => 
+          {
+            if(this.grad != null && this.grad != "" && x.payload.val().grad != this.grad) return;
+            if(this.oblast != null && this.oblast != "" && x.payload.val().oblast != this.oblast) return;
+            if(this.ciklus != null && this.ciklus != "" && x.payload.val().ciklus != this.ciklus) return;
+            this.stipendije.push(new ScolarshipItem(x.key, x.payload.val().naslov, x.payload.val().ciklus, x.payload.val().trajanje, x.payload.val().oblast, x.payload.val().grad, x.payload.val().link, this.navCtrl, this.fdb));
+          });
+
+      });
   }
 
   sortArray(niz){

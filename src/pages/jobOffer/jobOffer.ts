@@ -1,17 +1,19 @@
 import { Component } from '@angular/core';
-import { NavController } from 'ionic-angular';
+import { NavController, NavParams } from 'ionic-angular';
 import { SQLite, SQLiteObject } from '@ionic-native/sqlite';
 import { AngularFireDatabase } from 'angularfire2/database';
 
 
 import { Job } from '../job/job';
+import { JobItem } from '../../models/JobItem';
+import { City } from '../../models/City';
 
 @Component({
   selector: 'page-jobOffer',
   templateUrl: 'jobOffer.html'
 })
 export class JobOffer {
-  gradovi: Array<{ value: number, naziv: string}>;
+  gradovi: Array<City>;
   firma: string;
   trajanje: Date;
   oblast: string;
@@ -21,15 +23,8 @@ export class JobOffer {
   naslov: string;
   link: string;
 
-  constructor(public navCtrl: NavController, private sqlite: SQLite, private fdb: AngularFireDatabase) {
-    this.gradovi = 
-    [
-      { value: 1, naziv: 'Amsterdam'}, { value: 2, naziv: 'Beč'},
-      { value: 3, naziv: 'Beograd'}, { value: 4, naziv: 'Berlin'},
-      { value: 5, naziv: 'Graz'}, { value: 6, naziv: 'Novi Sad'},
-      { value: 7, naziv: 'London'}, { value: 8, naziv: 'Zagreb'},
-      { value: 9, naziv: 'Madrid'}, { value: 10, naziv: 'Barcelona'}
-    ];
+  constructor(public navCtrl: NavController, public navParams: NavParams, private sqlite: SQLite, private fdb: AngularFireDatabase) {
+    this.gradovi = navParams.get('gradovi');
 
     this.gradovi.sort((item1,item2) => {
       if (item1.naziv > item2.naziv) {
@@ -57,18 +52,9 @@ export class JobOffer {
             
       }).catch(e => {this.naslov = e;});*/
 
-      let toSave = {
-        naslov: this.naslov,
-        grad: this.grad,
-        firma: this.firma,
-        trajanje: this.trajanje.toLocaleString(),
-        oblast: this.oblast,
-        telefon: this.telefon,
-        email: this.email,
-        link: this.link
-      }
-      this.fdb.list('jobs').push(toSave);                    
-      this.navCtrl.push(Job);
+      var item = new JobItem('', this.firma, this.naslov, this.grad, this.oblast, this.telefon, this.email, this.link, this.trajanje, this.navCtrl, this.fdb);
+      item.addItem();                    
+      this.navCtrl.push(Job, { gradovi: this.gradovi });
 
   }
 

@@ -1,14 +1,15 @@
 import { Component } from '@angular/core';
 import { NavController } from 'ionic-angular';
 import { SQLite, SQLiteObject } from '@ionic-native/sqlite';
+import { AngularFireDatabase } from 'angularfire2/database';
 
 import { ListPage } from '../list/list';
 import { Scolarship } from '../scolarship/scolarship';
 import { Job } from '../job/job';
 import { Blog } from '../blog/blog';
 import { University } from '../university/university';
+import { City } from '../../models/City'
 
-import { AngularFireDatabase } from 'angularfire2/database';
 
 @Component({
   selector: 'page-home',
@@ -16,7 +17,7 @@ import { AngularFireDatabase } from 'angularfire2/database';
 })
 export class HomePage {
   pages: Array<{title: string, component: any}>;
-  arrData = [];
+  gradovi = [];
 
   constructor(public navCtrl: NavController, private sqlite: SQLite, private fdb: AngularFireDatabase) {
     this.pages = [
@@ -27,23 +28,26 @@ export class HomePage {
       { title: 'Univerzitet', component: University }
     ];
 
-
-    var ref = this.fdb.list('/jobs/');   
-      ref.snapshotChanges().forEach(changes => {
-        console.log(changes);
-        changes.forEach(x => console.log(x.payload.val().firma));
-        changes.map(x => console.log(x.key));
-      });
-
   }
 
   nextpage(page:string) {
     //this.navCtrl.push(this.pages.find(item => item.title == page).component);
-    this.navCtrl.push(this.pages.find(item => item.title == page).component);
+    this.navCtrl.push(this.pages.find(item => item.title == page).component, { gradovi: this.gradovi });
   }
 
   ionViewDidLoad(){
-    this.sqlite.create({
+
+    this.gradovi = [];
+    var ref = this.fdb.list('/cities/');   
+    ref.snapshotChanges().forEach(changes => {
+        changes.forEach(x => 
+        {
+          this.gradovi.push(new City(x.key, x.payload.val().naziv));
+        });
+
+    });
+
+    /*this.sqlite.create({
       name: 'ionicdb.db',
       location: 'default'
     }).then((db: SQLiteObject) => {
@@ -76,7 +80,7 @@ export class HomePage {
 
 
 
-      }).catch(e => {});
+      //}).catch(e => {});
       
   }
 

@@ -5,6 +5,8 @@ import { EmailComposer } from '@ionic-native/email-composer';
 import { AngularFireDatabase } from 'angularfire2/database';
 
 import { JobOffer } from '../jobOffer/jobOffer';
+import { JobItem } from '../../models/JobItem';
+import { City } from '../../models/City';
 
 @Component({
   selector: 'page-job',
@@ -15,19 +17,12 @@ export class Job {
   query: string;
   grad: string;
   oblast: string;
-  gradovi: Array<{ value: number, naziv: string}>;
-  jobs: Array<{id:string, naslov: string, grad: string, firma: string, trajanje: Date, oblast: string, telefon: string, email: string, link: string}>;
+  gradovi: Array<City>;
+  jobs: Array<JobItem>;
 
   constructor(public navCtrl: NavController, public navParams: NavParams, private sqlite: SQLite, private emailComposer: EmailComposer, 
     private fdb: AngularFireDatabase) {
-    this.gradovi = 
-    [
-      { value: 1, naziv: 'Amsterdam'}, { value: 2, naziv: 'Beč'},
-      { value: 3, naziv: 'Beograd'}, { value: 4, naziv: 'Berlin'},
-      { value: 5, naziv: 'Graz'}, { value: 6, naziv: 'Novi Sad'},
-      { value: 7, naziv: 'London'}, { value: 8, naziv: 'Zagreb'},
-      { value: 9, naziv: 'Madrid'}, { value: 10, naziv: 'Barcelona'}
-    ];
+    this.gradovi = navParams.get('gradovi');
 
     this.jobs = [];
     this.query = "";
@@ -47,7 +42,7 @@ export class Job {
     this.getJobs();
   }
 
-  search(){
+  /*search(){
     this.query = "";
     if((this.grad != null && this.grad != "") || (this.oblast != null && this.oblast != "")) this.query += (" WHERE ");
     if(this.grad != null && this.grad != "") this.query += "grad = '" + this.grad + "'";
@@ -55,7 +50,7 @@ export class Job {
     if(this.oblast != null && this.oblast != "") this.query += (" oblast='" + this.oblast + "'");
 
     this.getJobs();
-  }
+  }*/
 
   getJobs(){
     /*this.sqlite.create({
@@ -85,16 +80,21 @@ export class Job {
         .catch(e => {});
       }).catch(e => {});*/
 
+      this.jobs = [];
       var ref = this.fdb.list('/jobs/');   
       ref.snapshotChanges().forEach(changes => {
-        console.log(changes);
-        changes.forEach(x => this.jobs.push({id:x.key,firma:x.payload.val().firma,naslov:x.payload.val().naslov,grad:x.payload.val().grad,oblast:x.payload.val().oblast,telefon:x.payload.val().telefon,email:x.payload.val().email,link:x.payload.val().link,trajanje:new Date(x.payload.val().trajanje)}));
-        changes.map(x => console.log(x.key));
+        changes.forEach(x => 
+        {
+          if(this.grad != null && this.grad != "" && x.payload.val().grad != this.grad) return;
+          if(this.oblast != null && this.oblast != "" && x.payload.val().oblast != this.oblast) return;
+          this.jobs.push(new JobItem(x.key, x.payload.val().firma, x.payload.val().naslov, x.payload.val().grad, x.payload.val().oblast, x.payload.val().telefon, x.payload.val().email, x.payload.val().link, new Date(x.payload.val().trajanje), this.navCtrl, this.fdb))
+        });
+ 
       });
   }
 
   offer(){
-    this.navCtrl.push(JobOffer);
+    this.navCtrl.push(JobOffer, { gradovi: this.gradovi });
 
   }
 

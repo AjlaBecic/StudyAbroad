@@ -25,9 +25,9 @@
         <ion-list-header class="list-header">
           Rezultati
         </ion-list-header>
-          <ion-item *ngFor="let item of uni">
+          <ion-item *ngFor="let item of uni" (click)="openMap(item.id)">
             <ion-grid>
-              <ion-row><h3>{{item.naslov}}</h3></ion-row>
+              <ion-row><h3>{{item.naziv}}</h3></ion-row>
               <ion-row><p>{{item.grad}}</p></ion-row>
             </ion-grid>
           </ion-item>

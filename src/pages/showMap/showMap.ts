@@ -12,10 +12,13 @@ import { NavController, NavParams } from 'ionic-angular';
  
     longituda : number;
     latituda : number;
+    naziv: string;
   
     constructor(public navCtrl: NavController, public navParams: NavParams) {
-      this.longituda = 51.51279;//navParams.get('longituda');
-      this.latituda = -0.09184;//navParams.get('latituda');
+      this.longituda = +navParams.get('longituda'); //51.51279;//
+      this.latituda = +navParams.get('latituda'); // -0.09184;//
+      this.naziv = navParams.get('naziv');
+      console.log(this.longituda);
     }
   
     ionViewDidLoad() {
@@ -43,7 +46,7 @@ import { NavController, NavParams } from 'ionic-angular';
       return new google.maps.Marker({
         position,
         map,
-        title: 'ajla'
+        title: this.naziv
       });
     }  
   }

@@ -8,7 +8,6 @@ import { Scolarship } from '../scolarship/scolarship';
 import { Job } from '../job/job';
 import { Blog } from '../blog/blog';
 import { University } from '../university/university';
-import { ShowMap } from '../showMap/showMap';
 import { City } from '../../models/City'
 
 
@@ -26,7 +25,7 @@ export class HomePage {
       { title: 'Stipendije', component: Scolarship },
       { title: 'Posao', component: Job },
       { title: 'Blog', component: Blog },
-      { title: 'Univerzitet', component: ShowMap }
+      { title: 'Univerzitet', component: University }
     ];
 
   }

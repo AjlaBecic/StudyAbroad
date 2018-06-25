@@ -35,24 +35,20 @@ import { Geolocation } from '@ionic-native/geolocation';
       this.geolocation.getCurrentPosition().then((resp) => {
         this.currentlat = resp.coords.latitude;
         this.currentlong = resp.coords.longitude;
-        this.location = new google.maps.LatLng(this.latituda, this.longituda);
         this.currentLocation = new google.maps.LatLng(this.currentlat, this.currentlong);
+        this.location = new google.maps.LatLng(this.latituda, this.longituda);
         const options = {
           center: this.location,
           zoom: 15
-          //mapTypeId: 'hybrid'
         }
-
+        window.alert(resp.coords.latitude);
   
         this.map = new google.maps.Map(this.mapRef.nativeElement, options);
-  
-        //za izmjenu mape
-        //setTimeout(() => map.setMapTypeId('satellite'), 3000);
   
         this.addMarker(this.location, this.map);
         this.addMarker(this.currentLocation, this.map);
 
-        this.getDirection();
+        this.getDirection(this.location, this.currentLocation);
         this.getDistance(resp.coords.latitude, resp.coords.longitude, this.latituda, this.longituda);
 
        }).catch((error) => {
@@ -60,13 +56,21 @@ import { Geolocation } from '@ionic-native/geolocation';
        });
     }
 
-    getDirection(){
+    addMarker(position, map){
+      return new google.maps.Marker({
+        position,
+        map,
+        title: this.naziv
+      });
+    } 
+
+    getDirection(location, currentlocation){
       var directionsService = new google.maps.DirectionsService;
       var directionsDisplay = new google.maps.DirectionsRenderer;
       directionsDisplay.setMap(this.map);
       directionsService.route({
-        origin: this.currentLocation,
-        destination: this.location,
+        origin: currentlocation,
+        destination: location,
         travelMode: 'DRIVING'
       }, function(response, status) {
         if (status === 'OK') {
@@ -91,15 +95,7 @@ import { Geolocation } from '@ionic-native/geolocation';
   
     deg2rad(deg) {
       return deg * (Math.PI/180)
-    }
-
-    addMarker(position, map){
-      return new google.maps.Marker({
-        position,
-        map,
-        title: this.naziv
-      });
-    }  
+    } 
   }
 
   

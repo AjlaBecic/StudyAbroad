@@ -23,7 +23,7 @@ import { Geolocation } from '@ionic-native/geolocation';
   
     ionViewDidLoad() {
         this.loadMap();
-        this.geolocation();
+        this.getLocation();
     }
 
     getLocation(){

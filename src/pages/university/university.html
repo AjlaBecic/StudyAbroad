@@ -8,14 +8,30 @@
   </ion-header>
   
   <ion-content padding>
-      <h3>Ionic GoogleMaps Starter</h3>
-    
-      <!--<div id="map_canvas">
-          <button ion-button (click)="onButtonClick($event)">Start demo</button>
-      </div>-->
-
-      <div #map id="map"></div>
-    
+    <ion-grid>
+      <ion-row>
+        <ion-item>
+          <ion-label>Grad</ion-label>
+          <ion-select [(ngModel)]="grad">
+              <ion-option *ngFor="let item of gradovi" value="{{item.naziv}}">{{item.naziv}}</ion-option>
+          </ion-select>
+        </ion-item>
+      </ion-row>
+      <ion-row>
+        <button ion-button class="trazi" round (click)="getUni()">Traži</button>
+    </ion-row>
+    </ion-grid>
+    <ion-list>
+        <ion-list-header class="list-header">
+          Rezultati
+        </ion-list-header>
+          <ion-item *ngFor="let item of uni">
+            <ion-grid>
+              <ion-row><h3>{{item.naslov}}</h3></ion-row>
+              <ion-row><p>{{item.grad}}</p></ion-row>
+            </ion-grid>
+          </ion-item>
+      </ion-list>    
     
     </ion-content>
     

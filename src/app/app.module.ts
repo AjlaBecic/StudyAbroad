@@ -4,7 +4,6 @@ import { IonicApp, IonicErrorHandler, IonicModule } from 'ionic-angular';
 
 import { SQLite } from '@ionic-native/sqlite';
 import { EmailComposer } from '@ionic-native/email-composer';
-import { GoogleMaps } from "@ionic-native/google-maps";
 import { AngularFireModule } from 'angularfire2'
 import { AngularFireDatabaseModule } from 'angularfire2/database'
 
@@ -19,6 +18,7 @@ import { Blog } from '../pages/blog/blog';
 import { BlogStory } from '../pages/blogStory/blogStory';
 import { AddStory } from '../pages/addStory/addStory';
 import { University } from '../pages/university/university';
+import { ShowMap } from '../pages/showMap/showMap';
 
 import { StatusBar } from '@ionic-native/status-bar';
 import { SplashScreen } from '@ionic-native/splash-screen';
@@ -44,7 +44,8 @@ var config = {
     Blog,
     BlogStory,
     AddStory,
-    University
+    University,
+    ShowMap
   ],
   imports: [
     BrowserModule,
@@ -64,15 +65,15 @@ var config = {
     Blog,
     BlogStory,
     AddStory,
-    University
+    University,
+    ShowMap
   ],
   providers: [
     StatusBar,
     SplashScreen,
     {provide: ErrorHandler, useClass: IonicErrorHandler},
     SQLite,
-    EmailComposer,
-    GoogleMaps
+    EmailComposer
   ]
 })
 export class AppModule {}

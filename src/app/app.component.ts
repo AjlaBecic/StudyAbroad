@@ -10,6 +10,7 @@ import { Job } from '../pages/job/job';
 import { JobOffer } from '../pages/jobOffer/jobOffer';
 import { Blog } from '../pages/blog/blog';
 import { AddStory } from '../pages/addStory/addStory';
+import { ShowMap } from '../pages/showMap/showMap';
 
 @Component({
   templateUrl: 'app.html'
@@ -32,7 +33,8 @@ export class MyApp {
       { title: 'Posao', component: Job },
       { title: 'Objavi ponudu za posao', component: JobOffer },
       { title: 'Blog', component: Blog },
-      { title: 'Dodaj priču', component: AddStory }
+      { title: 'Dodaj priču', component: AddStory },
+      { title: 'Mapa', component: ShowMap }
     ];
 
   }

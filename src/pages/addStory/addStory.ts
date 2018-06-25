@@ -3,7 +3,7 @@ import { NavController, NavParams } from 'ionic-angular';
 import { AngularFireDatabase } from 'angularfire2/database';
 import { SQLite, SQLiteObject } from '@ionic-native/sqlite';
 import { Blog } from '../blog/blog';
-import { BlogItem } from '../../models/blogItem';
+import { BlogItem } from '../../models/BlogItem';
 
 @Component({
   selector: 'page-addStory',

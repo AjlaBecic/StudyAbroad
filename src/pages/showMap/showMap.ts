@@ -1,5 +1,6 @@
 import { Component, ViewChild, ElementRef } from '@angular/core';
 import { NavController, NavParams } from 'ionic-angular';
+import { Geolocation } from '@ionic-native/geolocation';
 
   declare var google : any;
 
@@ -14,15 +15,26 @@ import { NavController, NavParams } from 'ionic-angular';
     latituda : number;
     naziv: string;
   
-    constructor(public navCtrl: NavController, public navParams: NavParams) {
+    constructor(public navCtrl: NavController, public navParams: NavParams, private geolocation: Geolocation) {
       this.longituda = +navParams.get('longituda'); //51.51279;//
       this.latituda = +navParams.get('latituda'); // -0.09184;//
       this.naziv = navParams.get('naziv');
-      console.log(this.longituda);
     }
   
     ionViewDidLoad() {
         this.loadMap();
+        this.geolocation();
+    }
+
+    getLocation(){
+
+      this.geolocation.getCurrentPosition().then((resp) => {
+        console.log(resp.coords.latitude);
+        console.log(resp.coords.longitude);
+       }).catch((error) => {
+         console.log('Error getting location', error);
+       });
+
     }
 
     loadMap(){

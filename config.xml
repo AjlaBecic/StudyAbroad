@@ -88,7 +88,7 @@
     <plugin name="cordova-plugin-email-composer" spec="^0.8.15" />
     <plugin name="mx.ferreyra.callnumber" spec="~0.0.2" />
     <plugin name="cordova-plugin-googlemaps" spec="^2.3.6">
-        <variable name="API_KEY_FOR_ANDROID" value="AIzaSyBnXiZULB9xifbKMH62pH1aetug20S2BzA" />
-        <variable name="API_KEY_FOR_IOS" value="AIzaSyBnXiZULB9xifbKMH62pH1aetug20S2BzA" />
+        <variable name="API_KEY_FOR_ANDROID" value="AIzaSyCDAvvyHfBtaeqrgrfYlBrdi96cho65SEU" />
+        <variable name="API_KEY_FOR_IOS" value="AIzaSyAeunoqFZ0w8w0TDdQiMVfp7TxdGD21lfc" />
     </plugin>
 </widget>

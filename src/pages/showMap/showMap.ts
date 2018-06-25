@@ -13,7 +13,13 @@ import { Geolocation } from '@ionic-native/geolocation';
  
     longituda : number;
     latituda : number;
+    currentlat: number;
+    currentlong: number;
     naziv: string;
+    currentLocation: any;
+    location: any;
+    map: any;
+    distance: string;
   
     constructor(public navCtrl: NavController, public navParams: NavParams, private geolocation: Geolocation) {
       this.longituda = +navParams.get('longituda'); //51.51279;//
@@ -23,35 +29,68 @@ import { Geolocation } from '@ionic-native/geolocation';
   
     ionViewDidLoad() {
         this.loadMap();
-        this.getLocation();
-    }
-
-    getLocation(){
-
-      this.geolocation.getCurrentPosition().then((resp) => {
-        console.log(resp.coords.latitude);
-        console.log(resp.coords.longitude);
-       }).catch((error) => {
-         console.log('Error getting location', error);
-       });
-
     }
 
     loadMap(){
-      const location = new google.maps.LatLng(this.longituda, this.latituda);
+      this.geolocation.getCurrentPosition().then((resp) => {
+        this.currentlat = resp.coords.latitude;
+        this.currentlong = resp.coords.longitude;
+        this.location = new google.maps.LatLng(this.latituda, this.longituda);
+        this.currentLocation = new google.maps.LatLng(this.currentlat, this.currentlong);
+        const options = {
+          center: this.location,
+          zoom: 15
+          //mapTypeId: 'hybrid'
+        }
 
-      const options = {
-        center: location,
-        zoom: 15
-        //mapTypeId: 'hybrid'
+  
+        this.map = new google.maps.Map(this.mapRef.nativeElement, options);
+  
+        //za izmjenu mape
+        //setTimeout(() => map.setMapTypeId('satellite'), 3000);
+  
+        this.addMarker(this.location, this.map);
+        this.addMarker(this.currentLocation, this.map);
+
+        this.getDirection();
+        this.getDistance(resp.coords.latitude, resp.coords.longitude, this.latituda, this.longituda);
+
+       }).catch((error) => {
+         console.log('Error getting location', error);
+       });
     }
 
-      const map = new google.maps.Map(this.mapRef.nativeElement, options);
+    getDirection(){
+      var directionsService = new google.maps.DirectionsService;
+      var directionsDisplay = new google.maps.DirectionsRenderer;
+      directionsDisplay.setMap(this.map);
+      directionsService.route({
+        origin: this.currentLocation,
+        destination: this.location,
+        travelMode: 'DRIVING'
+      }, function(response, status) {
+        if (status === 'OK') {
+          directionsDisplay.setDirections(response);
+        } else {
+          window.alert('Directions request failed due to ' + status);
+        }
+      });
+    }
 
-      //za izmjenu mape
-      //setTimeout(() => map.setMapTypeId('satellite'), 3000);
-
-      this.addMarker(location, map);
+    getDistance(lat1, lon1, lat2, lon2) {
+      var R = 6371; // Radius of the earth in km
+      var dLat = this.deg2rad(lat2-lat1);  // deg2rad below
+      var dLon = this.deg2rad(lon2-lon1); 
+      var a = 
+        Math.sin(dLat/2) * Math.sin(dLat/2) +
+        Math.cos(this.deg2rad(lat1)) * Math.cos(this.deg2rad(lat2)) * 
+        Math.sin(dLon/2) * Math.sin(dLon/2); 
+      var c = 2 * Math.atan2(Math.sqrt(a), Math.sqrt(1-a)); 
+      this.distance = (R * c).toFixed(2); // Distance in km
+    }
+  
+    deg2rad(deg) {
+      return deg * (Math.PI/180)
     }
 
     addMarker(position, map){

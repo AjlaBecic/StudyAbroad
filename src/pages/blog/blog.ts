@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { NavController, NavParams } from 'ionic-angular';
+import { NavController, NavParams, ToastController } from 'ionic-angular';
 import { SQLite, SQLiteObject } from '@ionic-native/sqlite';
 import { EmailComposer } from '@ionic-native/email-composer';
 import { AngularFireDatabase } from 'angularfire2/database';
@@ -13,8 +13,12 @@ import { BlogItem } from '../../models/BlogItem'
 })
 export class Blog {
     stories: Array<BlogItem>;
+    naslov: string;
+    tekst: string;
+    email: string;
+    story: any;
 
-  constructor(public navCtrl: NavController, private sqlite: SQLite, private emailComposer: EmailComposer, private fdb: AngularFireDatabase) {
+  constructor(public navCtrl: NavController, private sqlite: SQLite, private emailComposer: EmailComposer, private fdb: AngularFireDatabase, private toastCtrl: ToastController) {
     
     this.stories = [];
   }
@@ -25,28 +29,46 @@ export class Blog {
   }
 
   ionViewDidLoad(){
-    /*this.sqlite.create({
-      name: 'ionicdb.db',
-      location: 'default'
-    }).then((db: SQLiteObject) => {    
-        db.executeSql('SELECT * FROM blog ORDER BY id DESC', {})
-        .then(res => {
-          this.stories = [];
-          for(var i=0; i<res.rows.length; i++) {
-            this.stories.push(new BlogItem(res.rows.item(i).id, res.rows.item(i).naslov, res.rows.item(i).tekst, res.rows.item(i).email));
-          }
-        })
-        .catch(e => {});
-      }).catch(e => {});*/
-      this.stories = [];
-      var ref = this.fdb.list('/blog/');   
-      ref.snapshotChanges().forEach(changes => {
-          changes.forEach(x => 
-          {
-            this.stories.push(new BlogItem(x.key, x.payload.val().naslov, x.payload.val().tekst, x.payload.val().email, this.fdb));
-          });
+      this.getStories();
+  }
 
+  getStories(){
+    this.stories = [];
+    var ref = this.fdb.list('/blog/');   
+    ref.snapshotChanges().forEach(changes => {
+        changes.forEach(x => 
+        {
+          this.stories.push(new BlogItem(x.key, x.payload.val().naslov, x.payload.val().tekst, x.payload.val().email, this.fdb));
+        });
+
+    });
+  }
+
+  addOffer(){
+      var item = new BlogItem('', this.naslov, this.tekst, this.email, this.fdb);
+      item.addItem();           
+
+      const toast = this.toastCtrl.create({
+        message: 'Uspješno ste dodali priču.',
+        position: 'bottom',
+        showCloseButton: true
       });
+      toast.present();
+
+      toast.onDidDismiss(() => {
+        this.naslov = '';
+        this.tekst = '';
+        this.email = '';
+      });
+  }
+
+  presentToast(mess) {
+    const toast = this.toastCtrl.create({
+      message: mess,
+      duration: 3000,
+      position: 'bottom'
+    });
+    toast.present();
   }
 
   sendEmail(adress: string, title: string){

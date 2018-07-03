@@ -10,6 +10,7 @@ import { Job } from '../pages/job/job';
 import { JobOffer } from '../pages/jobOffer/jobOffer';
 import { Blog } from '../pages/blog/blog';
 import { AddStory } from '../pages/addStory/addStory';
+import { University } from '../pages/university/university';
 
 @Component({
   templateUrl: 'app.html'
@@ -27,6 +28,7 @@ export class MyApp {
     // used for an example of ngFor and navigation
     this.pages = [
       { title: 'Home', component: HomePage },
+      { title: 'Univerziteti', component: University },
       { title: 'Blog', component: Blog },
       { title: 'Stipendije', component: Scolarship },
       { title: 'Posao', component: Job },

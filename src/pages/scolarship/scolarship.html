@@ -15,7 +15,7 @@
     <ion-row>
       <ion-col col-6>
         <ion-item>
-          <ion-label>Grad</ion-label>
+          <ion-label floating>Grad</ion-label>
           <ion-select [(ngModel)]="grad">
               <ion-option *ngFor="let item of gradovi" value="{{item.naziv}}">{{item.naziv}}</ion-option>
           </ion-select>
@@ -23,7 +23,7 @@
       </ion-col>
       <ion-col col-6>
         <ion-item>
-          <ion-label>Ciklus</ion-label>
+          <ion-label floating>Ciklus</ion-label>
           <ion-select [(ngModel)]="ciklus">
             <ion-option value="Bachelor">Bachelor</ion-option>
             <ion-option value="Master">Master</ion-option>
@@ -34,7 +34,7 @@
     </ion-row>
     <ion-row class="red">
         <ion-item>
-            <ion-label>Oblast studija</ion-label>
+            <ion-label floating>Oblast studija</ion-label>
             <ion-select [(ngModel)]="oblast">
                 <ion-option *ngFor="let item of oblasti" value="{{item.naziv}}">{{item.naziv}}</ion-option>
             </ion-select>

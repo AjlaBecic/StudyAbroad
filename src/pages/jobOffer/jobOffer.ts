@@ -38,24 +38,9 @@ export class JobOffer {
   }
 
   addOffer(){
-    /*this.sqlite.create({
-      name: 'ionicdb.db',
-      location: 'default'
-    }).then((db: SQLiteObject) => {
-
-        db.executeSql("INSERT INTO jobs(firma, trajanje, oblast, grad, telefon, email, naslov, link) VALUES('" + this.firma + "','" + this.trajanje.toLocaleString() 
-          + "','" + this.oblast + "','" + this.grad + "','" + this.telefon + "','" + this.email + "','" + this.naslov + "','" + this.link + "')" , {})
-        .then(res => {                    
-          this.navCtrl.push(Job);
-        })
-        .catch(e => {  this.naslov = this.trajanje.toLocaleString() + this.link + e;      })
-            
-      }).catch(e => {this.naslov = e;});*/
-
       var item = new JobItem('', this.firma, this.naslov, this.grad, this.oblast, this.telefon, this.email, this.link, this.trajanje, this.navCtrl, this.fdb);
       item.addItem();                    
       this.navCtrl.push(Job, { gradovi: this.gradovi });
-
   }
 
 }

@@ -22,7 +22,7 @@
     <div [ngSwitch]="story">
         <ion-list *ngSwitchCase="'popular'" (clicket)='getStories()'>                
             <ion-item-sliding *ngFor="let item of stories">
-                <ion-item>
+                <ion-item class="bg">
                     <ion-avatar item-start>
                         <img src="assets/icon/favicon.ico">
                     </ion-avatar>
